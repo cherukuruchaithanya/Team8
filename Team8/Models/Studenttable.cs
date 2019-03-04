@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 namespace Team8.Models
 {
-    public class Studenttable
+    public class Student
     {
-        public int StudnetID { get; set; }
+        public int StudentID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
             }

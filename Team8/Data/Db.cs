@@ -137,7 +137,7 @@ namespace Team8.Data
 
             if (context.Studenttable.Any())
             {
-                Console.WriteLine("Studenttable already exist");
+                Console.WriteLine("Student already exist");
             }
             else
             {
