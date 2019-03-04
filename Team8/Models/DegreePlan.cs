@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Team8.Models
 {
-    public class StudnetTerm
+    public class DegreePlan
     {
         public int DegreePlanId { get; set; }
         public int DegreeID { get; set; }

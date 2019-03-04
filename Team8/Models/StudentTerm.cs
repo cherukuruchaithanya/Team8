@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Team8.Models
 {
-    public class StudnetTerm
+    public class StudentTerm
     {
         public int StudentTermID { get; set; }
         public int StudentID { get; set; }
