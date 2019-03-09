@@ -24,13 +24,13 @@ namespace Team8.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Models.Degree>().ToTable("Degree");
+            modelBuilder.Entity<Models.Degree>().ToTable("Degrees");
             modelBuilder.Entity<Models.Requirement>().ToTable("Requirements");
-            modelBuilder.Entity<Models.DegreeRequirement>().ToTable("DegreeRequirement");
-            modelBuilder.Entity<Models.DegreePlanTermRequirement>().ToTable("DegreePlanTermRequirement");
-            modelBuilder.Entity<Models.DegreePlan>().ToTable("DegreePlan");
-            modelBuilder.Entity<Models.StudentTerm>().ToTable("StudentTerm");
-            modelBuilder.Entity<Models.Student>().ToTable("Student");
+            modelBuilder.Entity<Models.DegreeRequirement>().ToTable("DegreeRequirements");
+            modelBuilder.Entity<Models.DegreePlanTermRequirement>().ToTable("DegreePlanTermRequirements");
+            modelBuilder.Entity<Models.DegreePlan>().ToTable("DegreePlans");
+            modelBuilder.Entity<Models.StudentTerm>().ToTable("StudentTerms");
+            modelBuilder.Entity<Models.Student>().ToTable("Students");
         }
     }
 }
