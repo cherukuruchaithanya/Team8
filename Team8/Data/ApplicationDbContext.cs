@@ -24,7 +24,11 @@ namespace Team8.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+           
+
             modelBuilder.Entity<Models.Degree>().ToTable("Degrees");
+
             modelBuilder.Entity<Models.Requirement>().ToTable("Requirements");
             modelBuilder.Entity<Models.DegreeRequirement>().ToTable("DegreeRequirements");
             modelBuilder.Entity<Models.DegreePlanTermRequirement>().ToTable("DegreePlanTermRequirements");
