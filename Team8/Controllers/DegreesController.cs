@@ -34,7 +34,7 @@ namespace Team8.Controllers
             }
 
             var degree = await _context.Degrees
-                .FirstOrDefaultAsync(m => m.DegreeID == id);
+                .FirstOrDefaultAsync(m => m.DegreeId == id);
             if (degree == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DegreeID,Degrees,DegreeName")] Degree degree)
+        public async Task<IActionResult> Create([Bind("DegreeId,Degrees,DegreeName")] Degree degree)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DegreeID,Degrees,DegreeName")] Degree degree)
+        public async Task<IActionResult> Edit(int id, [Bind("DegreeId,Degrees,DegreeName")] Degree degree)
         {
-            if (id != degree.DegreeID)
+            if (id != degree.DegreeId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Team8.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DegreeExists(degree.DegreeID))
+                    if (!DegreeExists(degree.DegreeId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Team8.Controllers
             }
 
             var degree = await _context.Degrees
-                .FirstOrDefaultAsync(m => m.DegreeID == id);
+                .FirstOrDefaultAsync(m => m.DegreeId == id);
             if (degree == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace Team8.Controllers
 
         private bool DegreeExists(int id)
         {
-            return _context.Degrees.Any(e => e.DegreeID == id);
+            return _context.Degrees.Any(e => e.DegreeId == id);
         }
     }
 }

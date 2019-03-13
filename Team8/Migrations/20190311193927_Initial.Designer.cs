@@ -188,7 +188,7 @@ namespace Team8.Migrations
 
             modelBuilder.Entity("Team8.Models.Degree", b =>
                 {
-                    b.Property<int>("DegreeID")
+                    b.Property<int>("DegreeId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -196,7 +196,7 @@ namespace Team8.Migrations
 
                     b.Property<string>("Degrees");
 
-                    b.HasKey("DegreeID");
+                    b.HasKey("DegreeId");
 
                     b.ToTable("Degrees");
                 });
@@ -207,7 +207,7 @@ namespace Team8.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DegreeID");
+                    b.Property<int>("DegreeId");
 
                     b.Property<string>("DegreePlanName");
 
@@ -228,7 +228,7 @@ namespace Team8.Migrations
 
                     b.Property<int>("DegreePlanID");
 
-                    b.Property<int>("RequirementID");
+                    b.Property<int>("RequirementId");
 
                     b.Property<int>("TermID");
 
@@ -239,7 +239,7 @@ namespace Team8.Migrations
 
             modelBuilder.Entity("Team8.Models.DegreeRequirement", b =>
                 {
-                    b.Property<int>("DegreeRequirementID")
+                    b.Property<int>("DegreeRequirementId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -247,14 +247,14 @@ namespace Team8.Migrations
 
                     b.Property<int>("RequirementId");
 
-                    b.HasKey("DegreeRequirementID");
+                    b.HasKey("DegreeRequirementId");
 
                     b.ToTable("DegreeRequirements");
                 });
 
             modelBuilder.Entity("Team8.Models.Requirement", b =>
                 {
-                    b.Property<int>("RequirementID")
+                    b.Property<int>("RequirementId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -262,7 +262,7 @@ namespace Team8.Migrations
 
                     b.Property<string>("Requirements");
 
-                    b.HasKey("RequirementID");
+                    b.HasKey("RequirementId");
 
                     b.ToTable("Requirements");
                 });

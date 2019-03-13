@@ -34,7 +34,7 @@ namespace Team8.Controllers
             }
 
             var requirement = await _context.Requirements
-                .FirstOrDefaultAsync(m => m.RequirementID == id);
+                .FirstOrDefaultAsync(m => m.RequirementId == id);
             if (requirement == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RequirementID,Requirements,RequirementName")] Requirement requirement)
+        public async Task<IActionResult> Create([Bind("RequirementId,Requirements,RequirementName")] Requirement requirement)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RequirementID,Requirements,RequirementName")] Requirement requirement)
+        public async Task<IActionResult> Edit(int id, [Bind("RequirementId,Requirements,RequirementName")] Requirement requirement)
         {
-            if (id != requirement.RequirementID)
+            if (id != requirement.RequirementId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Team8.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!RequirementExists(requirement.RequirementID))
+                    if (!RequirementExists(requirement.RequirementId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Team8.Controllers
             }
 
             var requirement = await _context.Requirements
-                .FirstOrDefaultAsync(m => m.RequirementID == id);
+                .FirstOrDefaultAsync(m => m.RequirementId == id);
             if (requirement == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace Team8.Controllers
 
         private bool RequirementExists(int id)
         {
-            return _context.Requirements.Any(e => e.RequirementID == id);
+            return _context.Requirements.Any(e => e.RequirementId == id);
         }
     }
 }

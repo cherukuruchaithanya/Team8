@@ -34,7 +34,7 @@ namespace Team8.Controllers
             }
 
             var degreeRequirement = await _context.DegreeRequirements
-                .FirstOrDefaultAsync(m => m.DegreeRequirementID == id);
+                .FirstOrDefaultAsync(m => m.DegreeRequirementId == id);
             if (degreeRequirement == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DegreeRequirementID,DegreeId,RequirementId")] DegreeRequirement degreeRequirement)
+        public async Task<IActionResult> Create([Bind("DegreeRequirementId,DegreeId,RequirementId")] DegreeRequirement degreeRequirement)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DegreeRequirementID,DegreeId,RequirementId")] DegreeRequirement degreeRequirement)
+        public async Task<IActionResult> Edit(int id, [Bind("DegreeRequirementId,DegreeId,RequirementId")] DegreeRequirement degreeRequirement)
         {
-            if (id != degreeRequirement.DegreeRequirementID)
+            if (id != degreeRequirement.DegreeRequirementId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Team8.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DegreeRequirementExists(degreeRequirement.DegreeRequirementID))
+                    if (!DegreeRequirementExists(degreeRequirement.DegreeRequirementId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Team8.Controllers
             }
 
             var degreeRequirement = await _context.DegreeRequirements
-                .FirstOrDefaultAsync(m => m.DegreeRequirementID == id);
+                .FirstOrDefaultAsync(m => m.DegreeRequirementId == id);
             if (degreeRequirement == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace Team8.Controllers
 
         private bool DegreeRequirementExists(int id)
         {
-            return _context.DegreeRequirements.Any(e => e.DegreeRequirementID == id);
+            return _context.DegreeRequirements.Any(e => e.DegreeRequirementId == id);
         }
     }
 }

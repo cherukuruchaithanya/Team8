@@ -54,7 +54,7 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DegreePlanTermRequirementID,DegreePlanID,TermID,RequirementID")] DegreePlanTermRequirement degreePlanTermRequirement)
+        public async Task<IActionResult> Create([Bind("DegreePlanTermRequirementID,DegreePlanID,TermID,RequirementId")] DegreePlanTermRequirement degreePlanTermRequirement)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DegreePlanTermRequirementID,DegreePlanID,TermID,RequirementID")] DegreePlanTermRequirement degreePlanTermRequirement)
+        public async Task<IActionResult> Edit(int id, [Bind("DegreePlanTermRequirementID,DegreePlanID,TermID,RequirementId")] DegreePlanTermRequirement degreePlanTermRequirement)
         {
             if (id != degreePlanTermRequirement.DegreePlanTermRequirementID)
             {
