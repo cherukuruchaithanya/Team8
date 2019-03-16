@@ -125,9 +125,25 @@ namespace Team8.Data
                 }
                 context.SaveChanges();
             }
-
-
-
+            if (context.Students.Any())
+            {
+                Console.WriteLine("Student already exist");
+            }
+            else
+            {
+                var student = new Models.Student[] {
+                    new Models.Student{StudentId =531495,FirstName = "Chaithanya", LastName ="Cherukuru" },
+                    new Models.Student{StudentId =531502,FirstName = "Midhun", LastName ="Kurapati" },
+                     new Models.Student{StudentId =531495,FirstName = "Girish", LastName ="Guntuku" },
+                      new Models.Student{StudentId =531495,FirstName = "Pappu", LastName ="sha" },
+                   };
+                Console.WriteLine($"Inserted{student.Length} new studenttable.");
+                foreach (Models.Student s in student)
+                {
+                    context.Students.Add(s);
+                }
+                context.SaveChanges();
+            }
             if (context.DegreePlans.Any())
             {
                 Console.WriteLine(" DegreePlan already exist");
@@ -157,33 +173,42 @@ namespace Team8.Data
 
 
 
-
-
-
-            if (context.Students.Any())
+            if (context.StudentTerms.Any())
             {
-                Console.WriteLine("Student already exist");
+                Console.WriteLine("Degreess already exist");
             }
             else
             {
-                var student = new Models.Student[] {
-                    new Models.Student{StudentId =531495,FirstName = "Chaithanya", LastName ="Cherukuru" },
-                    new Models.Student{StudentId =531502,FirstName = "Midhun", LastName ="Kurapati" },
-                     new Models.Student{StudentId =531495,FirstName = "Girish", LastName ="Guntuku" },
-                      new Models.Student{StudentId =531495,FirstName = "Pappu", LastName ="sha" },
-                   };
-                Console.WriteLine($"Inserted{student.Length} new studenttable.");
-                foreach (Models.Student s in student)
+                var studentterms = new Models.StudentTerm[] {
+new Models.StudentTerm{StudentTermId=1,StudentId=531495,Term=1,Abbrev="Sp19",TermLabel="Spring2019"},
+new Models.StudentTerm{StudentTermId=2,StudentId=531495,Term=2,Abbrev="Su19",TermLabel="Summer2019"},
+new Models.StudentTerm{StudentTermId=3,StudentId=531495,Term=3,Abbrev="Fa19",TermLabel="Fall2019"},
+new Models.StudentTerm{StudentTermId=4,StudentId=531495,Term=4,Abbrev="Sp20",TermLabel="Spring2020"},
+new Models.StudentTerm{StudentTermId=5,StudentId=531495,Term=5,Abbrev="Su20",TermLabel="Summer2020"},
+new Models.StudentTerm{StudentTermId=6,StudentId=531502,Term=1,Abbrev="Fa19",TermLabel="Fall2019"},
+new Models.StudentTerm{StudentTermId=7,StudentId=531502,Term=2,Abbrev="Sp20",TermLabel="Spring2020"},
+new Models.StudentTerm{StudentTermId=8,StudentId=531502,Term=3,Abbrev="Su20",TermLabel="Summer2020"},
+new Models.StudentTerm{StudentTermId=9,StudentId=531502,Term=4,Abbrev="Fa20",TermLabel="Fall2020"},
+new Models.StudentTerm{StudentTermId=10,StudentId=531502,Term=5,Abbrev="Fa22",TermLabel="Fall2022"},
+new Models.StudentTerm{StudentTermId=11,StudentId=531502,Term=1,Abbrev="Sp21",TermLabel="Spring2021"},
+new Models.StudentTerm{StudentTermId=12,StudentId=531369,Term=1,Abbrev="Sp21",TermLabel="Spring2021"},
+new Models.StudentTerm{StudentTermId=13,StudentId=531369,Term=2,Abbrev="Su21",TermLabel="Summer2020"},
+new Models.StudentTerm{StudentTermId=14,StudentId=531369,Term=3,Abbrev="Fa21",TermLabel="Fall2021"},
+new Models.StudentTerm{StudentTermId=15,StudentId=531369,Term=4,Abbrev="Sp22",TermLabel="Spring2022"},
+new Models.StudentTerm{StudentTermId=16,StudentId=525956,Term=1,Abbrev="Fa22",TermLabel="Fall2019"},
+new Models.StudentTerm{StudentTermId=17,StudentId=525956,Term=2,Abbrev="Sp23",TermLabel="Spring2023"},
+new Models.StudentTerm{StudentTermId=18,StudentId=525956,Term=3,Abbrev="Su23",TermLabel="Summer2020"},
+new Models.StudentTerm{StudentTermId=19,StudentId=525956,Term=4,Abbrev="Fa23",TermLabel="Fall2023"},
+new Models.StudentTerm{StudentTermId=20,StudentId=525956,Term=5,Abbrev="Sp24",TermLabel="Spring2024"},
+
+                };
+                Console.WriteLine($"Inserted{studentterms.Length} new students.");
+                foreach (Models.StudentTerm s in studentterms)
                 {
-                    context.Students.Add(s);
+                    context.StudentTerms.Add(s);
                 }
                 context.SaveChanges();
-            }
-
-
-
-
-            if (context.DegreePlanTermRequirements.Any())
+            } if (context.DegreePlanTermRequirements.Any())
             {
                 Console.WriteLine("DegreePlanTermRequirements already exist");
             }
@@ -273,49 +298,6 @@ new Models.DegreePlanTermRequirement {DegreePlanTermRequirementId=66,DegreePlanI
 
 
 
-
-
-
-            if (context.StudentTerms.Any())
-            {
-                Console.WriteLine("Degreess already exist");
-            }
-            else
-            {
-                var studentterms = new Models.StudentTerm[] {
-new Models.StudentTerm{StudentTermId=1,StudentId=531495,Term=1,Abbrev="Sp19",TermLabel="Spring2019"},
-new Models.StudentTerm{StudentTermId=2,StudentId=531495,Term=2,Abbrev="Su19",TermLabel="Summer2019"},
-new Models.StudentTerm{StudentTermId=3,StudentId=531495,Term=3,Abbrev="Fa19",TermLabel="Fall2019"},
-new Models.StudentTerm{StudentTermId=4,StudentId=531495,Term=4,Abbrev="Sp20",TermLabel="Spring2020"},
-new Models.StudentTerm{StudentTermId=5,StudentId=531495,Term=5,Abbrev="Su20",TermLabel="Summer2020"},
-new Models.StudentTerm{StudentTermId=6,StudentId=531502,Term=1,Abbrev="Fa19",TermLabel="Fall2019"},
-new Models.StudentTerm{StudentTermId=7,StudentId=531502,Term=2,Abbrev="Sp20",TermLabel="Spring2020"},
-new Models.StudentTerm{StudentTermId=8,StudentId=531502,Term=3,Abbrev="Su20",TermLabel="Summer2020"},
-new Models.StudentTerm{StudentTermId=9,StudentId=531502,Term=4,Abbrev="Fa20",TermLabel="Fall2020"},
-new Models.StudentTerm{StudentTermId=10,StudentId=531502,Term=5,Abbrev="Fa22",TermLabel="Fall2022"},
-new Models.StudentTerm{StudentTermId=11,StudentId=531502,Term=1,Abbrev="Sp21",TermLabel="Spring2021"},
-new Models.StudentTerm{StudentTermId=12,StudentId=531369,Term=1,Abbrev="Sp21",TermLabel="Spring2021"},
-new Models.StudentTerm{StudentTermId=13,StudentId=531369,Term=2,Abbrev="Su21",TermLabel="Summer2020"},
-new Models.StudentTerm{StudentTermId=14,StudentId=531369,Term=3,Abbrev="Fa21",TermLabel="Fall2021"},
-new Models.StudentTerm{StudentTermId=15,StudentId=531369,Term=4,Abbrev="Sp22",TermLabel="Spring2022"},
-new Models.StudentTerm{StudentTermId=16,StudentId=525956,Term=1,Abbrev="Fa22",TermLabel="Fall2019"},
-new Models.StudentTerm{StudentTermId=17,StudentId=525956,Term=2,Abbrev="Sp23",TermLabel="Spring2023"},
-new Models.StudentTerm{StudentTermId=18,StudentId=525956,Term=3,Abbrev="Su23",TermLabel="Summer2020"},
-new Models.StudentTerm{StudentTermId=19,StudentId=525956,Term=4,Abbrev="Fa23",TermLabel="Fall2023"},
-new Models.StudentTerm{StudentTermId=20,StudentId=525956,Term=5,Abbrev="Sp24",TermLabel="Spring2024"},
-
-                };
-                Console.WriteLine($"Inserted{studentterms.Length} new students.");
-                foreach (Models.StudentTerm s in studentterms)
-                {
-                    context.StudentTerms.Add(s);
-                }
-                context.SaveChanges();
-            }
-
-
-
-          
         }
 
     }

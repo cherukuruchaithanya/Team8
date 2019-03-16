@@ -22,7 +22,9 @@ namespace Team8
                 }
                 catch (Exception ex)
                 {
-                   
+                  //  var logger = services.GetRequiredService<ILogger<Program>>();
+                    // logger.LogError(ex, "An error occurred while seeding the database. \n" + ex.InnerException.Message);
+
                 }
             }
             host.Run();
