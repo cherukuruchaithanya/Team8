@@ -34,7 +34,7 @@ namespace Team8.Controllers
             }
 
             var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.StudentID == id);
+                .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentID,FirstName,LastName")] Student student)
+        public async Task<IActionResult> Create([Bind("StudentId,LastName,FirstName")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentID,FirstName,LastName")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentId,LastName,FirstName")] Student student)
         {
-            if (id != student.StudentID)
+            if (id != student.StudentId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Team8.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentExists(student.StudentID))
+                    if (!StudentExists(student.StudentId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Team8.Controllers
             }
 
             var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.StudentID == id);
+                .FirstOrDefaultAsync(m => m.StudentId == id);
             if (student == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace Team8.Controllers
 
         private bool StudentExists(int id)
         {
-            return _context.Students.Any(e => e.StudentID == id);
+            return _context.Students.Any(e => e.StudentId == id);
         }
     }
 }

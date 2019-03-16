@@ -186,60 +186,74 @@ namespace Team8.Migrations
 
             modelBuilder.Entity("Team8.Models.Degree", b =>
                 {
-                    b.Property<int>("DegreeId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("DegreeId");
 
-                    b.Property<string>("DegreeName");
+                    b.Property<string>("DegreeName")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
-                    b.Property<string>("Degrees");
+                    b.Property<string>("Degrees")
+                        .IsRequired()
+                        .HasMaxLength(6);
 
                     b.HasKey("DegreeId");
 
-                    b.ToTable("Degrees");
+                    b.ToTable("Degree");
                 });
 
             modelBuilder.Entity("Team8.Models.DegreePlan", b =>
                 {
-                    b.Property<int>("DegreePlanId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("DegreePlanId");
 
                     b.Property<int>("DegreeId");
 
-                    b.Property<string>("DegreePlanName");
+                    b.Property<string>("DegreePlanName")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
-                    b.Property<string>("DegreePlans");
+                    b.Property<string>("DegreePlans")
+                        .IsRequired()
+                        .HasMaxLength(6);
+
+                    b.Property<int>("SortOrder");
 
                     b.Property<int>("StudentId");
 
                     b.HasKey("DegreePlanId");
 
-                    b.ToTable("DegreePlans");
+                    b.HasIndex("DegreeId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("DegreePlan");
                 });
 
             modelBuilder.Entity("Team8.Models.DegreePlanTermRequirement", b =>
                 {
-                    b.Property<int>("DegreePlanTermRequirementID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("DegreePlanTermRequirementId");
 
-                    b.Property<int>("DegreePlanID");
+                    b.Property<int>("DegreePlanId");
 
                     b.Property<int>("RequirementId");
 
-                    b.Property<int>("TermID");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(8);
 
-                    b.HasKey("DegreePlanTermRequirementID");
+                    b.Property<int>("Term");
 
-                    b.ToTable("DegreePlanTermRequirements");
+                    b.HasKey("DegreePlanTermRequirementId");
+
+                    b.HasIndex("DegreePlanId");
+
+                    b.HasIndex("RequirementId");
+
+                    b.ToTable("DegreePlanTermRequirement");
                 });
 
             modelBuilder.Entity("Team8.Models.DegreeRequirement", b =>
                 {
-                    b.Property<int>("DegreeRequirementId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("DegreeRequirementId");
 
                     b.Property<int>("DegreeId");
 
@@ -247,56 +261,74 @@ namespace Team8.Migrations
 
                     b.HasKey("DegreeRequirementId");
 
-                    b.ToTable("DegreeRequirements");
+                    b.HasIndex("DegreeId");
+
+                    b.HasIndex("RequirementId");
+
+                    b.ToTable("DegreeRequirement");
                 });
 
             modelBuilder.Entity("Team8.Models.Requirement", b =>
                 {
-                    b.Property<int>("RequirementId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("RequirementId");
 
-                    b.Property<string>("RequirementName");
+                    b.Property<int>("IsFall");
 
-                    b.Property<string>("Requirements");
+                    b.Property<int>("IsSpring");
+
+                    b.Property<int>("IsSummer");
+
+                    b.Property<string>("RequirementName")
+                        .IsRequired()
+                        .HasMaxLength(24);
+
+                    b.Property<string>("Requirements")
+                        .IsRequired()
+                        .HasMaxLength(10);
 
                     b.HasKey("RequirementId");
 
-                    b.ToTable("Requirements");
+                    b.ToTable("Requirement");
                 });
 
             modelBuilder.Entity("Team8.Models.Student", b =>
                 {
-                    b.Property<int>("StudentID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("StudentId");
 
-                    b.Property<string>("FirstName");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(40);
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(40);
 
-                    b.HasKey("StudentID");
+                    b.HasKey("StudentId");
 
-                    b.ToTable("Students");
+                    b.ToTable("Student");
                 });
 
             modelBuilder.Entity("Team8.Models.StudentTerm", b =>
                 {
-                    b.Property<int>("StudentTermID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("StudentTermId");
+
+                    b.Property<string>("Abbrev")
+                        .IsRequired()
+                        .HasMaxLength(6);
 
                     b.Property<int>("StudentId");
 
                     b.Property<int>("Term");
 
-                    b.Property<string>("TermAbbrev");
+                    b.Property<string>("TermLabel")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
-                    b.Property<string>("TermLabel");
+                    b.HasKey("StudentTermId");
 
-                    b.HasKey("StudentTermID");
+                    b.HasIndex("StudentId");
 
-                    b.ToTable("StudentTerms");
+                    b.ToTable("StudentTerm");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -341,6 +373,53 @@ namespace Team8.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Team8.Models.DegreePlan", b =>
+                {
+                    b.HasOne("Team8.Models.Degree", "Degree")
+                        .WithMany()
+                        .HasForeignKey("DegreeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Team8.Models.Student", "Student")
+                        .WithMany("DegreePlans")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Team8.Models.DegreePlanTermRequirement", b =>
+                {
+                    b.HasOne("Team8.Models.DegreePlan", "DegreePlan")
+                        .WithMany()
+                        .HasForeignKey("DegreePlanId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Team8.Models.Requirement", "Requirement")
+                        .WithMany()
+                        .HasForeignKey("RequirementId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Team8.Models.DegreeRequirement", b =>
+                {
+                    b.HasOne("Team8.Models.Degree", "Degree")
+                        .WithMany()
+                        .HasForeignKey("DegreeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Team8.Models.Requirement", "Requirement")
+                        .WithMany()
+                        .HasForeignKey("RequirementId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Team8.Models.StudentTerm", b =>
+                {
+                    b.HasOne("Team8.Models.Student", "Student")
+                        .WithMany("StudentTerms")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

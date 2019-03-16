@@ -1,12 +1,27 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Team8.Models
 {
-
     public class Degree
-{
-    public int DegreeId{ get; set; }
-    public string Degrees { get; set; }
-    public string DegreeName { get; set; }
-}
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]  
+        [Display(Name = "Degree ID")]
+        public int DegreeId { get; set; }
+
+        [Required]
+        [StringLength(6, MinimumLength = 3)]
+        [Display(Name = "Abbreviation")]
+        public string Degrees { get; set; }
+
+        [Required]
+        [StringLength(20, MinimumLength = 3)]
+        [Display(Name = "Name")]
+        public string DegreeName { get; set; }
+
+    }
 }

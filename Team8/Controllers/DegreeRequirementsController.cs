@@ -22,7 +22,8 @@ namespace Team8.Controllers
         // GET: DegreeRequirements
         public async Task<IActionResult> Index()
         {
-            return View(await _context.DegreeRequirements.ToListAsync());
+            var applicationDbContext = _context.DegreeRequirements.Include(d => d.Degree).Include(d => d.Requirement);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: DegreeRequirements/Details/5
@@ -34,6 +35,8 @@ namespace Team8.Controllers
             }
 
             var degreeRequirement = await _context.DegreeRequirements
+                .Include(d => d.Degree)
+                .Include(d => d.Requirement)
                 .FirstOrDefaultAsync(m => m.DegreeRequirementId == id);
             if (degreeRequirement == null)
             {
@@ -46,6 +49,8 @@ namespace Team8.Controllers
         // GET: DegreeRequirements/Create
         public IActionResult Create()
         {
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName");
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName");
             return View();
         }
 
@@ -62,6 +67,8 @@ namespace Team8.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName", degreeRequirement.DegreeId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName", degreeRequirement.RequirementId);
             return View(degreeRequirement);
         }
 
@@ -78,6 +85,8 @@ namespace Team8.Controllers
             {
                 return NotFound();
             }
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName", degreeRequirement.DegreeId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName", degreeRequirement.RequirementId);
             return View(degreeRequirement);
         }
 
@@ -113,6 +122,8 @@ namespace Team8.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName", degreeRequirement.DegreeId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName", degreeRequirement.RequirementId);
             return View(degreeRequirement);
         }
 
@@ -125,6 +136,8 @@ namespace Team8.Controllers
             }
 
             var degreeRequirement = await _context.DegreeRequirements
+                .Include(d => d.Degree)
+                .Include(d => d.Requirement)
                 .FirstOrDefaultAsync(m => m.DegreeRequirementId == id);
             if (degreeRequirement == null)
             {

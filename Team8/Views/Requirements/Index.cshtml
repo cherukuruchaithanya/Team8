@@ -18,6 +18,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.RequirementName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSummer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSpring)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsFall)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -29,6 +38,15 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RequirementName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSummer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSpring)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsFall)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.RequirementId">Edit</a> |

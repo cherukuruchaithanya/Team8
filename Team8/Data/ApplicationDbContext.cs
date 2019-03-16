@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Team8.Models;
 
 namespace Team8.Data
 {
@@ -27,14 +28,14 @@ namespace Team8.Data
             base.OnModelCreating(modelBuilder);
            
 
-            modelBuilder.Entity<Models.Degree>().ToTable("Degrees");
+            modelBuilder.Entity<Degree>().ToTable("Degree");
 
-            modelBuilder.Entity<Models.Requirement>().ToTable("Requirements");
-            modelBuilder.Entity<Models.DegreeRequirement>().ToTable("DegreeRequirements");
-            modelBuilder.Entity<Models.DegreePlanTermRequirement>().ToTable("DegreePlanTermRequirements");
-            modelBuilder.Entity<Models.DegreePlan>().ToTable("DegreePlans");
-            modelBuilder.Entity<Models.StudentTerm>().ToTable("StudentTerms");
-            modelBuilder.Entity<Models.Student>().ToTable("Students");
+            modelBuilder.Entity<Models.Requirement>().ToTable("Requirement");
+            modelBuilder.Entity<Models.DegreeRequirement>().ToTable("DegreeRequirement");
+            modelBuilder.Entity<Models.DegreePlanTermRequirement>().ToTable("DegreePlanTermRequirement");
+            modelBuilder.Entity<Models.DegreePlan>().ToTable("DegreePlan");
+            modelBuilder.Entity<Models.StudentTerm>().ToTable("StudentTerm");
+            modelBuilder.Entity<Models.Student>().ToTable("Student");
         }
     }
 }

@@ -24,6 +24,21 @@
                 <span asp-validation-for="RequirementName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="IsSummer" class="control-label"></label>
+                <input asp-for="IsSummer" class="form-control" />
+                <span asp-validation-for="IsSummer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsSpring" class="control-label"></label>
+                <input asp-for="IsSpring" class="form-control" />
+                <span asp-validation-for="IsSpring" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsFall" class="control-label"></label>
+                <input asp-for="IsFall" class="form-control" />
+                <span asp-validation-for="IsFall" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

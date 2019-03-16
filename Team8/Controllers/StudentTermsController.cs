@@ -22,7 +22,8 @@ namespace Team8.Controllers
         // GET: StudentTerms
         public async Task<IActionResult> Index()
         {
-            return View(await _context.StudentTerms.ToListAsync());
+            var applicationDbContext = _context.StudentTerms.Include(s => s.Student);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: StudentTerms/Details/5
@@ -34,7 +35,8 @@ namespace Team8.Controllers
             }
 
             var studentTerm = await _context.StudentTerms
-                .FirstOrDefaultAsync(m => m.StudentTermID == id);
+                .Include(s => s.Student)
+                .FirstOrDefaultAsync(m => m.StudentTermId == id);
             if (studentTerm == null)
             {
                 return NotFound();
@@ -46,6 +48,7 @@ namespace Team8.Controllers
         // GET: StudentTerms/Create
         public IActionResult Create()
         {
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentTermID,StudentId,Term,TermAbbrev,TermLabel")] StudentTerm studentTerm)
+        public async Task<IActionResult> Create([Bind("StudentTermId,StudentId,Term,Abbrev,TermLabel")] StudentTerm studentTerm)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace Team8.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", studentTerm.StudentId);
             return View(studentTerm);
         }
 
@@ -78,6 +82,7 @@ namespace Team8.Controllers
             {
                 return NotFound();
             }
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", studentTerm.StudentId);
             return View(studentTerm);
         }
 
@@ -86,9 +91,9 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentTermID,StudentId,Term,TermAbbrev,TermLabel")] StudentTerm studentTerm)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentTermId,StudentId,Term,Abbrev,TermLabel")] StudentTerm studentTerm)
         {
-            if (id != studentTerm.StudentTermID)
+            if (id != studentTerm.StudentTermId)
             {
                 return NotFound();
             }
@@ -102,7 +107,7 @@ namespace Team8.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentTermExists(studentTerm.StudentTermID))
+                    if (!StudentTermExists(studentTerm.StudentTermId))
                     {
                         return NotFound();
                     }
@@ -113,6 +118,7 @@ namespace Team8.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", studentTerm.StudentId);
             return View(studentTerm);
         }
 
@@ -125,7 +131,8 @@ namespace Team8.Controllers
             }
 
             var studentTerm = await _context.StudentTerms
-                .FirstOrDefaultAsync(m => m.StudentTermID == id);
+                .Include(s => s.Student)
+                .FirstOrDefaultAsync(m => m.StudentTermId == id);
             if (studentTerm == null)
             {
                 return NotFound();
@@ -147,7 +154,7 @@ namespace Team8.Controllers
 
         private bool StudentTermExists(int id)
         {
-            return _context.StudentTerms.Any(e => e.StudentTermID == id);
+            return _context.StudentTerms.Any(e => e.StudentTermId == id);
         }
     }
 }
