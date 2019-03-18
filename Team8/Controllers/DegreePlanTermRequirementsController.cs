@@ -49,8 +49,8 @@ namespace Team8.Controllers
         // GET: DegreePlanTermRequirements/Create
         public IActionResult Create()
         {
-            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanName");
-            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName");
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbrev");
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementAbbr");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace Team8.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanName", degreePlanTermRequirement.DegreePlanId);
-            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName", degreePlanTermRequirement.RequirementId);
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbrev", degreePlanTermRequirement.DegreePlanId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementAbbr", degreePlanTermRequirement.RequirementId);
             return View(degreePlanTermRequirement);
         }
 
@@ -85,8 +85,8 @@ namespace Team8.Controllers
             {
                 return NotFound();
             }
-            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanName", degreePlanTermRequirement.DegreePlanId);
-            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName", degreePlanTermRequirement.RequirementId);
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbrev", degreePlanTermRequirement.DegreePlanId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementAbbr", degreePlanTermRequirement.RequirementId);
             return View(degreePlanTermRequirement);
         }
 
@@ -122,8 +122,8 @@ namespace Team8.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanName", degreePlanTermRequirement.DegreePlanId);
-            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName", degreePlanTermRequirement.RequirementId);
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbrev", degreePlanTermRequirement.DegreePlanId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementAbbr", degreePlanTermRequirement.RequirementId);
             return View(degreePlanTermRequirement);
         }
 

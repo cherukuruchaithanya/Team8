@@ -29,7 +29,6 @@ namespace Team8.Data
            
 
             modelBuilder.Entity<Degree>().ToTable("Degree");
-
             modelBuilder.Entity<Models.Requirement>().ToTable("Requirement");
             modelBuilder.Entity<Models.DegreeRequirement>().ToTable("DegreeRequirement");
             modelBuilder.Entity<Models.DegreePlanTermRequirement>().ToTable("DegreePlanTermRequirement");

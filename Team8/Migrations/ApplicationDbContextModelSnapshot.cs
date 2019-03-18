@@ -188,13 +188,13 @@ namespace Team8.Migrations
                 {
                     b.Property<int>("DegreeId");
 
+                    b.Property<string>("DegreeAbbr")
+                        .IsRequired()
+                        .HasMaxLength(6);
+
                     b.Property<string>("DegreeName")
                         .IsRequired()
                         .HasMaxLength(20);
-
-                    b.Property<string>("Degrees")
-                        .IsRequired()
-                        .HasMaxLength(6);
 
                     b.HasKey("DegreeId");
 
@@ -207,13 +207,13 @@ namespace Team8.Migrations
 
                     b.Property<int>("DegreeId");
 
+                    b.Property<string>("DegreePlanAbbrev")
+                        .IsRequired()
+                        .HasMaxLength(6);
+
                     b.Property<string>("DegreePlanName")
                         .IsRequired()
                         .HasMaxLength(20);
-
-                    b.Property<string>("DegreePlans")
-                        .IsRequired()
-                        .HasMaxLength(6);
 
                     b.Property<int>("SortOrder");
 
@@ -278,13 +278,13 @@ namespace Team8.Migrations
 
                     b.Property<int>("IsSummer");
 
+                    b.Property<string>("RequirementAbbr")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
                     b.Property<string>("RequirementName")
                         .IsRequired()
                         .HasMaxLength(24);
-
-                    b.Property<string>("Requirements")
-                        .IsRequired()
-                        .HasMaxLength(10);
 
                     b.HasKey("RequirementId");
 
@@ -295,11 +295,11 @@ namespace Team8.Migrations
                 {
                     b.Property<int>("StudentId");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("Family")
                         .IsRequired()
                         .HasMaxLength(40);
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("Given")
                         .IsRequired()
                         .HasMaxLength(40);
 
@@ -316,13 +316,13 @@ namespace Team8.Migrations
                         .IsRequired()
                         .HasMaxLength(6);
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
                     b.Property<int>("StudentId");
 
                     b.Property<int>("Term");
-
-                    b.Property<string>("TermLabel")
-                        .IsRequired()
-                        .HasMaxLength(20);
 
                     b.HasKey("StudentTermId");
 

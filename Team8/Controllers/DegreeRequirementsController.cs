@@ -49,8 +49,8 @@ namespace Team8.Controllers
         // GET: DegreeRequirements/Create
         public IActionResult Create()
         {
-            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName");
-            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName");
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbbr");
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementAbbr");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace Team8.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName", degreeRequirement.DegreeId);
-            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName", degreeRequirement.RequirementId);
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbbr", degreeRequirement.DegreeId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementAbbr", degreeRequirement.RequirementId);
             return View(degreeRequirement);
         }
 
@@ -85,8 +85,8 @@ namespace Team8.Controllers
             {
                 return NotFound();
             }
-            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName", degreeRequirement.DegreeId);
-            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName", degreeRequirement.RequirementId);
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbbr", degreeRequirement.DegreeId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementAbbr", degreeRequirement.RequirementId);
             return View(degreeRequirement);
         }
 
@@ -122,8 +122,8 @@ namespace Team8.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName", degreeRequirement.DegreeId);
-            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName", degreeRequirement.RequirementId);
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbbr", degreeRequirement.DegreeId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementAbbr", degreeRequirement.RequirementId);
             return View(degreeRequirement);
         }
 

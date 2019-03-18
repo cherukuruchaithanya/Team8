@@ -16,7 +16,7 @@ namespace Team8.Models
         [Required]
         [StringLength(6, MinimumLength = 3)]
         [Display(Name = "Abbreviation")]
-        public string Degrees { get; set; }
+        public string DegreeAbbr { get; set; }
 
         [Required]
         [StringLength(20, MinimumLength = 3)]

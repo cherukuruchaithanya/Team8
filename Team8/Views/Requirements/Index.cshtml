@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Requirements)
+                @Html.DisplayNameFor(model => model.RequirementAbbr)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RequirementName)
@@ -34,7 +34,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Requirements)
+                @Html.DisplayFor(modelItem => item.RequirementAbbr)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RequirementName)

@@ -48,7 +48,7 @@ namespace Team8.Controllers
         // GET: StudentTerms/Create
         public IActionResult Create()
         {
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName");
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Family");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentTermId,StudentId,Term,Abbrev,TermLabel")] StudentTerm studentTerm)
+        public async Task<IActionResult> Create([Bind("StudentTermId,StudentId,Term,Abbrev,Name")] StudentTerm studentTerm)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace Team8.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", studentTerm.StudentId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Family", studentTerm.StudentId);
             return View(studentTerm);
         }
 
@@ -82,7 +82,7 @@ namespace Team8.Controllers
             {
                 return NotFound();
             }
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", studentTerm.StudentId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Family", studentTerm.StudentId);
             return View(studentTerm);
         }
 
@@ -91,7 +91,7 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentTermId,StudentId,Term,Abbrev,TermLabel")] StudentTerm studentTerm)
+        public async Task<IActionResult> Edit(int id, [Bind("StudentTermId,StudentId,Term,Abbrev,Name")] StudentTerm studentTerm)
         {
             if (id != studentTerm.StudentTermId)
             {
@@ -118,7 +118,7 @@ namespace Team8.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", studentTerm.StudentId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Family", studentTerm.StudentId);
             return View(studentTerm);
         }
 

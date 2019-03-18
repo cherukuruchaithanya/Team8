@@ -15,9 +15,9 @@ namespace Team8.Models
         public int RequirementId { get; set; }
 
         [Required]
-        [StringLength(10, MinimumLength = 3)]
+        [StringLength(30, MinimumLength = 3)]
         [Display(Name = "Abbreviation")]
-        public string Requirements { get; set; }
+        public string RequirementAbbr { get; set; }
 
         [Required]
         [StringLength(24, MinimumLength = 3)]

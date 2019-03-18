@@ -49,8 +49,8 @@ namespace Team8.Controllers
         // GET: DegreePlans/Create
         public IActionResult Create()
         {
-            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName");
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName");
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbbr");
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Family");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DegreePlanId,DegreeId,StudentId,DegreePlans,DegreePlanName,SortOrder")] DegreePlan degreePlan)
+        public async Task<IActionResult> Create([Bind("DegreePlanId,DegreeId,StudentId,DegreePlanAbbrev,DegreePlanName,SortOrder")] DegreePlan degreePlan)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace Team8.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName", degreePlan.DegreeId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", degreePlan.StudentId);
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbbr", degreePlan.DegreeId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Family", degreePlan.StudentId);
             return View(degreePlan);
         }
 
@@ -85,8 +85,8 @@ namespace Team8.Controllers
             {
                 return NotFound();
             }
-            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName", degreePlan.DegreeId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", degreePlan.StudentId);
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbbr", degreePlan.DegreeId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Family", degreePlan.StudentId);
             return View(degreePlan);
         }
 
@@ -95,7 +95,7 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DegreePlanId,DegreeId,StudentId,DegreePlans,DegreePlanName,SortOrder")] DegreePlan degreePlan)
+        public async Task<IActionResult> Edit(int id, [Bind("DegreePlanId,DegreeId,StudentId,DegreePlanAbbrev,DegreePlanName,SortOrder")] DegreePlan degreePlan)
         {
             if (id != degreePlan.DegreePlanId)
             {
@@ -122,8 +122,8 @@ namespace Team8.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName", degreePlan.DegreeId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", degreePlan.StudentId);
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbbr", degreePlan.DegreeId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Family", degreePlan.StudentId);
             return View(degreePlan);
         }
 

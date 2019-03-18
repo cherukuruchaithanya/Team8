@@ -37,10 +37,10 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DegreePlan.DegreePlanName)
+                @Html.DisplayFor(modelItem => item.DegreePlan.DegreePlanAbbrev)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Requirement.RequirementName)
+                @Html.DisplayFor(modelItem => item.Requirement.RequirementAbbr)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.DegreePlanTermRequirementId">Edit</a> |

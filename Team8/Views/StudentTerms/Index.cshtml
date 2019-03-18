@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.Abbrev)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TermLabel)
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Student)
@@ -37,10 +37,10 @@
                 @Html.DisplayFor(modelItem => item.Abbrev)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TermLabel)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Student.FirstName)
+                @Html.DisplayFor(modelItem => item.Student.Family)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.StudentTermId">Edit</a> |
