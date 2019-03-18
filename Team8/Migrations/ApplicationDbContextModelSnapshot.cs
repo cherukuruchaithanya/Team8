@@ -280,11 +280,11 @@ namespace Team8.Migrations
 
                     b.Property<string>("RequirementAbbr")
                         .IsRequired()
-                        .HasMaxLength(30);
+                        .HasMaxLength(50);
 
                     b.Property<string>("RequirementName")
                         .IsRequired()
-                        .HasMaxLength(24);
+                        .HasMaxLength(50);
 
                     b.HasKey("RequirementId");
 

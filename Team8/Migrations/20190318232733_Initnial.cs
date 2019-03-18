@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Team8.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Initnial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,8 +65,8 @@ namespace Team8.Migrations
                 columns: table => new
                 {
                     RequirementId = table.Column<int>(nullable: false),
-                    RequirementAbbr = table.Column<string>(maxLength: 30, nullable: false),
-                    RequirementName = table.Column<string>(maxLength: 24, nullable: false),
+                    RequirementAbbr = table.Column<string>(maxLength: 50, nullable: false),
+                    RequirementName = table.Column<string>(maxLength: 50, nullable: false),
                     IsSummer = table.Column<int>(nullable: false),
                     IsSpring = table.Column<int>(nullable: false),
                     IsFall = table.Column<int>(nullable: false)
