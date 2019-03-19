@@ -39,20 +39,20 @@ namespace Team8.Data
             {
                 var all = new Requirement[]
                 {
-                     new Requirement {RequirementId = 460, RequirementAbbr = "DB", RequirementName = "Databases", IsSummer = 0, IsSpring = 1, IsFall = 1  },
-                     new Requirement {RequirementId = 356, RequirementAbbr = "NF", RequirementName = "Network Fundamentals", IsSummer = 0, IsSpring = 1, IsFall = 1  },
-                     new Requirement {RequirementId = 542, RequirementAbbr = "542", RequirementName = "OOPS with Java", IsSummer = 0, IsSpring = 1, IsFall = 1  },
-                     new Requirement {RequirementId = 563, RequirementAbbr = "563", RequirementName = "Web Apps", IsSummer = 0, IsSpring = 1, IsFall = 1  },
-                     new Requirement {RequirementId = 560, RequirementAbbr = "560", RequirementName = "Advanced Databases", IsSummer = 1, IsSpring = 1, IsFall = 1  },
-                     new Requirement {RequirementId = 664, RequirementAbbr = "664-UX", RequirementName = "User Experience", IsSummer = 0, IsSpring = 1, IsFall = 1  },
-                     new Requirement {RequirementId = 618, RequirementAbbr = "618-PM", RequirementName = "Project Management", IsSummer = 1, IsSpring = 0, IsFall = 0 },
-                     new Requirement {RequirementId = 555, RequirementAbbr = "555-NS", RequirementName = "Network Security", IsSummer = 0, IsSpring = 1, IsFall = 1  },
-                     new Requirement {RequirementId = 691, RequirementAbbr = "691-GDP1", RequirementName = "GDP1", IsSummer = 0, IsSpring = 1, IsFall = 1  },
-                     new Requirement {RequirementId = 692, RequirementAbbr = "692-GDP2", RequirementName = "GDP2", IsSummer = 0, IsSpring = 1, IsFall = 1 },
-                     new Requirement {RequirementId = 6, RequirementAbbr = "Mobile", RequirementName = "643 or 644 Mobile", IsSummer = 0, IsSpring = 1, IsFall = 1  },
-                     new Requirement {RequirementId = 10, RequirementAbbr = "E1", RequirementName = "Elective 1", IsSummer = 0, IsSpring = 1, IsFall = 1 },
-                     new Requirement {RequirementId = 20, RequirementAbbr = "E2", RequirementName = "Elective 2", IsSummer = 0, IsSpring = 1, IsFall = 1  }
-                    };
+                      new Requirement {RequirementId = 460, RequirementAbbr ="DB", RequirementName = "44-460 Database", IsSummer = 0, IsSpring = 1, IsFall = 1 },
+ new Requirement {RequirementId = 356, RequirementAbbr = "NF", RequirementName = "44-356 Network Fundamemtals", IsSummer = 0, IsSpring = 1, IsFall = 1 },
+ new Requirement {RequirementId = 542, RequirementAbbr = "OOP", RequirementName = "44-542 OOP with Java", IsSummer = 0, IsSpring = 1, IsFall = 1 },
+ new Requirement {RequirementId = 563, RequirementAbbr = "Web apps", RequirementName = "44-563 Web apps", IsSummer = 0, IsSpring = 1, IsFall = 1 },
+ new Requirement {RequirementId = 560, RequirementAbbr = "ADB", RequirementName = "44-560 ADB", IsSummer = 1, IsSpring = 1, IsFall = 1 },
+ new Requirement {RequirementId = 664, RequirementAbbr = "NS", RequirementName = "44-555 Network Security", IsSummer = 0, IsSpring = 1, IsFall = 1 },
+ new Requirement {RequirementId = 618, RequirementAbbr = "PM", RequirementName = "44-618 PM", IsSummer = 1, IsSpring = 0, IsFall = 0 },
+ new Requirement {RequirementId = 555, RequirementAbbr = "Mobile", RequirementName = "44-643 or 44-644", IsSummer = 0, IsSpring = 1, IsFall = 1 },
+ new Requirement {RequirementId = 691, RequirementAbbr = "UX", RequirementName = "44-664 UX", IsSummer = 0, IsSpring = 1, IsFall = 1 },
+ new Requirement {RequirementId = 692, RequirementAbbr = "E1", RequirementName = "Elective 1", IsSummer = 0, IsSpring = 1, IsFall = 1 },
+ new Requirement {RequirementId = 6, RequirementAbbr = "E2", RequirementName = "Elective 2", IsSummer = 0, IsSpring = 1, IsFall = 1 },
+ new Requirement {RequirementId = 10, RequirementAbbr = "GDP1", RequirementName = "GDP1", IsSummer = 0, IsSpring = 1, IsFall = 1 },
+ new Requirement {RequirementId = 20, RequirementAbbr = "GDP2", RequirementName = "GDP2", IsSummer = 0, IsSpring = 1, IsFall = 1 },
+ };
                 Console.WriteLine($"Inserting {all.Length} new requirements.");
                 foreach (Requirement i in all) { context.Requirements.Add(i); }
                 context.SaveChanges();
@@ -64,56 +64,55 @@ namespace Team8.Data
             {
                 var all = new DegreeRequirement[]
                 {
-                     new DegreeRequirement {DegreeRequirementId = 1460, DegreeId = 1, RequirementId = 460 },
+ new DegreeRequirement {DegreeRequirementId = 1460, DegreeId = 1, RequirementId = 460 },
  new DegreeRequirement {DegreeRequirementId = 1356, DegreeId = 1, RequirementId = 356 },
  new DegreeRequirement {DegreeRequirementId = 1542, DegreeId = 1, RequirementId = 542 },
  new DegreeRequirement {DegreeRequirementId = 1563, DegreeId = 1, RequirementId = 563 },
  new DegreeRequirement {DegreeRequirementId = 1560, DegreeId = 1, RequirementId = 560 },
- new DegreeRequirement {DegreeRequirementId = 1664, DegreeId = 1, RequirementId = 664 },
- new DegreeRequirement {DegreeRequirementId = 1618, DegreeId = 1, RequirementId = 618 },
  new DegreeRequirement {DegreeRequirementId = 1555, DegreeId = 1, RequirementId = 555 },
- new DegreeRequirement {DegreeRequirementId = 1691, DegreeId = 1, RequirementId = 691 },
- new DegreeRequirement {DegreeRequirementId = 1692, DegreeId = 1, RequirementId = 692 },
+ new DegreeRequirement {DegreeRequirementId = 1618, DegreeId = 1, RequirementId = 618 },
  new DegreeRequirement {DegreeRequirementId = 16, DegreeId = 1, RequirementId = 6 },
+ new DegreeRequirement {DegreeRequirementId = 1664, DegreeId = 1, RequirementId = 664 },
  new DegreeRequirement {DegreeRequirementId = 110, DegreeId = 1, RequirementId = 10 },
  new DegreeRequirement {DegreeRequirementId = 120, DegreeId = 1, RequirementId = 20 },
+ new DegreeRequirement {DegreeRequirementId = 1691, DegreeId = 1, RequirementId = 691 },
+ new DegreeRequirement {DegreeRequirementId = 1692, DegreeId = 1, RequirementId = 692 },
  new DegreeRequirement {DegreeRequirementId = 2460, DegreeId = 2, RequirementId = 460 },
  new DegreeRequirement {DegreeRequirementId = 2542, DegreeId = 2, RequirementId = 542 },
  new DegreeRequirement {DegreeRequirementId = 2563, DegreeId = 2, RequirementId = 563 },
  new DegreeRequirement {DegreeRequirementId = 2560, DegreeId = 2, RequirementId = 560 },
- new DegreeRequirement {DegreeRequirementId = 2664, DegreeId = 2, RequirementId = 664 },
- new DegreeRequirement {DegreeRequirementId = 2618, DegreeId = 2, RequirementId = 618 },
  new DegreeRequirement {DegreeRequirementId = 2555, DegreeId = 2, RequirementId = 555 },
- new DegreeRequirement {DegreeRequirementId = 2691, DegreeId = 2, RequirementId = 691 },
- new DegreeRequirement {DegreeRequirementId = 2692, DegreeId = 2, RequirementId = 692 },
+ new DegreeRequirement {DegreeRequirementId = 2618, DegreeId = 2, RequirementId = 618 },
  new DegreeRequirement {DegreeRequirementId = 26, DegreeId = 2, RequirementId = 6 },
+ new DegreeRequirement {DegreeRequirementId = 2664, DegreeId = 2, RequirementId = 664 },
  new DegreeRequirement {DegreeRequirementId = 210, DegreeId = 2, RequirementId = 10 },
  new DegreeRequirement {DegreeRequirementId = 220, DegreeId = 2, RequirementId = 20 },
+ new DegreeRequirement {DegreeRequirementId = 2691, DegreeId = 2, RequirementId = 691 },
+ new DegreeRequirement {DegreeRequirementId = 2692, DegreeId = 2, RequirementId = 692 },
  new DegreeRequirement {DegreeRequirementId = 3356, DegreeId = 3, RequirementId = 356 },
  new DegreeRequirement {DegreeRequirementId = 3542, DegreeId = 3, RequirementId = 542 },
  new DegreeRequirement {DegreeRequirementId = 3563, DegreeId = 3, RequirementId = 563 },
  new DegreeRequirement {DegreeRequirementId = 3560, DegreeId = 3, RequirementId = 560 },
- new DegreeRequirement {DegreeRequirementId = 3664, DegreeId = 3, RequirementId = 664 },
- new DegreeRequirement {DegreeRequirementId = 3618, DegreeId = 3, RequirementId = 618 },
  new DegreeRequirement {DegreeRequirementId = 3555, DegreeId = 3, RequirementId = 555 },
- new DegreeRequirement {DegreeRequirementId = 3691, DegreeId = 3, RequirementId = 691 },
- new DegreeRequirement {DegreeRequirementId = 3692, DegreeId = 3, RequirementId = 692 },
+ new DegreeRequirement {DegreeRequirementId = 3618, DegreeId = 3, RequirementId = 618 },
  new DegreeRequirement {DegreeRequirementId = 36, DegreeId = 3, RequirementId = 6 },
+ new DegreeRequirement {DegreeRequirementId = 3664, DegreeId = 3, RequirementId = 664 },
  new DegreeRequirement {DegreeRequirementId = 310, DegreeId = 3, RequirementId = 10 },
  new DegreeRequirement {DegreeRequirementId = 320, DegreeId = 3, RequirementId = 20 },
+ new DegreeRequirement {DegreeRequirementId = 3691, DegreeId = 3, RequirementId = 691 },
+ new DegreeRequirement {DegreeRequirementId = 3692, DegreeId = 3, RequirementId = 692 },
  new DegreeRequirement {DegreeRequirementId = 4542, DegreeId = 4, RequirementId = 542 },
  new DegreeRequirement {DegreeRequirementId = 4563, DegreeId = 4, RequirementId = 563 },
  new DegreeRequirement {DegreeRequirementId = 4560, DegreeId = 4, RequirementId = 560 },
- new DegreeRequirement {DegreeRequirementId = 4664, DegreeId = 4, RequirementId = 664 },
- new DegreeRequirement {DegreeRequirementId = 4618, DegreeId = 4, RequirementId = 618 },
  new DegreeRequirement {DegreeRequirementId = 4555, DegreeId = 4, RequirementId = 555 },
- new DegreeRequirement {DegreeRequirementId = 4691, DegreeId = 4, RequirementId = 691 },
- new DegreeRequirement {DegreeRequirementId = 4692, DegreeId = 4, RequirementId = 692 },
+ new DegreeRequirement {DegreeRequirementId = 4618, DegreeId = 4, RequirementId = 618 },
  new DegreeRequirement {DegreeRequirementId = 46, DegreeId = 4, RequirementId = 6 },
+ new DegreeRequirement {DegreeRequirementId = 4664, DegreeId = 4, RequirementId = 664 },
  new DegreeRequirement {DegreeRequirementId = 410, DegreeId = 4, RequirementId = 10 },
  new DegreeRequirement {DegreeRequirementId = 420, DegreeId = 4, RequirementId = 20 },
-
-                  };
+ new DegreeRequirement {DegreeRequirementId = 4691, DegreeId = 4, RequirementId = 691 },
+ new DegreeRequirement {DegreeRequirementId = 4692, DegreeId = 4, RequirementId = 692 },
+};
                 Console.WriteLine($"Inserted {all.Length} new DegreeRequirements.");
                 foreach (DegreeRequirement i in all) { context.DegreeRequirements.Add(i); }
                 context.SaveChanges();
@@ -124,6 +123,7 @@ namespace Team8.Data
             else
             {
                 var all = new Student[]
+<<<<<<< HEAD
                 {
                     new Student {StudentId = 531495, Family = "Cherukuru", Given = "Chaithanya" },
 
@@ -133,6 +133,12 @@ new Student {StudentId = 531369, Family = "Girish", Given = "Guntuku" },
 
   new Student {StudentId = 525956, Family = "Pappu", Given = "sha" },
 
+=======
+                {   new Student {StudentId = 531495, Family = "Cherukuru", Given = "Chaithanya" },
+ new Student {StudentId = 531502, Family = "Midhun", Given = "Kurapati" },
+ new Student {StudentId = 531369, Family = "Girish", Given = "Guntuku" },
+  new Student {StudentId = 525956, Family = "Pappu", Given = "sha" },
+>>>>>>> 653a39152e9978ba0760bc645a6d7eb937b79135
                   };
                 Console.WriteLine($"Inserted {all.Length} new Students.");
                 foreach (Student i in all) { context.Students.Add(i); }
@@ -160,6 +166,7 @@ new Student {StudentId = 531369, Family = "Girish", Given = "Guntuku" },
             }
 
             // if we have StudentTerms already, skip adding, otherwise add
+<<<<<<< HEAD
             if (context.StudentTerms.Any()) { Console.WriteLine("StudentTerms already exist."); }
             else
             {
@@ -189,6 +196,9 @@ new Student {StudentId = 531369, Family = "Girish", Given = "Guntuku" },
                 foreach (StudentTerm i in all) { context.StudentTerms.Add(i); }
                 context.SaveChanges();
             }
+=======
+           
+>>>>>>> 653a39152e9978ba0760bc645a6d7eb937b79135
 
             // if we have DegreePlanTermRequirements already, skip adding, otherwise add
             if (context.DegreePlanTermRequirements.Any()) { Console.WriteLine("DegreePlanTermRequirements already exist."); }
@@ -268,6 +278,39 @@ new Student {StudentId = 531369, Family = "Girish", Given = "Guntuku" },
                 foreach (DegreePlanTermRequirement i in all) { context.DegreePlanTermRequirements.Add(i); }
                 context.SaveChanges();
             }
+
+            if (context.StudentTerms.Any()) { Console.WriteLine("StudentTerms already exist."); }
+            else
+            {
+                var all = new StudentTerm[]
+                {
+                     new StudentTerm {StudentTermId = 5314951, StudentId = 531495, Term = 1, Abbrev = "Sp19", Name = "Spring 2019" },
+ new StudentTerm {StudentTermId = 5314952, StudentId = 531495, Term = 2, Abbrev = "Su19", Name = "Summer 2019" },
+ new StudentTerm {StudentTermId = 5314953, StudentId = 531495, Term = 3, Abbrev = "Fa19", Name = "Fall 2019" },
+ new StudentTerm {StudentTermId = 5314954, StudentId = 531495, Term = 4, Abbrev = "Sp20", Name = "Spring 2020" },
+ new StudentTerm {StudentTermId = 5314955, StudentId = 531495, Term = 5, Abbrev = "Su20", Name = "Summer2020" },
+ new StudentTerm {StudentTermId = 5315021, StudentId = 531502, Term = 1, Abbrev = "Fa19", Name = "Fall 2019" },
+ new StudentTerm {StudentTermId = 5315022, StudentId = 531502, Term = 2, Abbrev = "Sp20", Name = "Spring 2020" },
+ new StudentTerm {StudentTermId = 5315023, StudentId = 531502, Term = 3, Abbrev = "Su20", Name = "Summer2020" },
+ new StudentTerm {StudentTermId = 5315024, StudentId = 531502, Term = 4, Abbrev = "Fa20", Name = "Fall 2020" },
+ new StudentTerm {StudentTermId = 5315025, StudentId = 531502, Term = 5, Abbrev = "Sp21", Name = "Spring2021" },
+ new StudentTerm {StudentTermId = 5315021, StudentId = 531502, Term = 1, Abbrev = "Fa22", Name = "Fall 2022" },
+ new StudentTerm {StudentTermId = 5313691, StudentId = 531369, Term = 1, Abbrev = "Sp21", Name = "Spring 2021" },
+ new StudentTerm {StudentTermId = 5313692, StudentId = 531369, Term = 2, Abbrev = "Su21", Name = "Summer 2021" },
+ new StudentTerm {StudentTermId = 5313693, StudentId = 531369, Term = 3, Abbrev = "Fa21", Name = "Fall 2021" },
+ new StudentTerm {StudentTermId = 5313694, StudentId = 531369, Term = 4, Abbrev = "Sp22", Name = "Spring 2022" },
+ new StudentTerm {StudentTermId = 5259561, StudentId = 525956, Term = 1, Abbrev = "Fa22", Name = "Fall 2022" },
+ new StudentTerm {StudentTermId = 5259562, StudentId = 525956, Term = 2, Abbrev = "Sp23", Name = "Spring 2023" },
+ new StudentTerm {StudentTermId = 5259563, StudentId = 525956, Term = 3, Abbrev = "Su23", Name = "Summer2023" },
+ new StudentTerm {StudentTermId = 5259564, StudentId = 525956, Term = 4, Abbrev = "Fa23", Name = "Fall 2023" },
+ new StudentTerm {StudentTermId = 5259565, StudentId = 525956, Term = 5, Abbrev = "Sp24", Name = "Spring2024" },
+
+                  };
+                Console.WriteLine($"Inserted {all.Length} new StudentTerms.");
+                foreach (StudentTerm i in all) { context.StudentTerms.Add(i); }
+                context.SaveChanges();
+            }
+
 
 
 
