@@ -20,9 +20,51 @@ namespace Team8.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Students.ToListAsync());
+            ViewData["FirstNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "firstName_desc" : "";
+            ViewData["LastNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "lastName_desc" : "LastName";
+            ViewData["SNumberSortParm"] = sortOrder == "Snumber" ? "snumber_desc" : "SNumber";
+            ViewData["SIDSortParm"] = sortOrder == "SId" ? "sid_desc" : "SID";
+            ViewData["currentFilter"] = searchString;
+
+            var student = from s in _context.Students
+                          select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                student = student.Where(s => s.Given.Contains(searchString) || s.Family.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "firstName_desc":
+                    student = student.OrderByDescending(s => s.Given);
+                    break;
+                case "LastName":
+                    student = student.OrderBy(s => s.Family);
+                    break;
+                case "lastName_desc":
+                    student = student.OrderByDescending(s => s.Family);
+                    break;
+                case "SNumber":
+                    student = student.OrderBy(s => s.StudentTerms);
+                    break;
+                case "snumber_desc":
+                    student = student.OrderByDescending(s => s.StudentTerms);
+                    break;
+                case "SID":
+                    student = student.OrderBy(s => s.StudentId);
+                    break;
+                case "sid_desc":
+                    student = student.OrderByDescending(s => s.StudentId);
+                    break;
+                default:
+                    student = student.OrderBy(s => s.Given);
+                    break;
+            }
+
+            return View(await student.AsNoTracking().ToListAsync());
         }
 
         // GET: Students/Details/5

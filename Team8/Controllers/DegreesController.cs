@@ -20,11 +20,38 @@ namespace Team8.Controllers
         }
 
         // GET: Degrees
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Degrees.ToListAsync());
-        }
+            ViewData["DegreeAbrrSortParm"] = String.IsNullOrEmpty(sortOrder) ? "degreeAbrr_desc" : "";
+            ViewData["DegreeNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "degreeName_desc" : "DegreeName";
+            ViewData["currentFilter"] = searchString;
 
+            var degree = from s in _context.Degrees
+                         select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                degree = degree.Where(s => s.DegreeAbbr.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "degreeAbrrev_desc":
+                    degree = degree.OrderByDescending(s => s.DegreeAbbr);
+                    break;
+                case "DegreeName":
+                    degree = degree.OrderBy(s => s.DegreeName);
+                    break;
+                case "degreeName_desc":
+                    degree = degree.OrderByDescending(s => s.DegreeName);
+                    break;
+                default:
+                    degree = degree.OrderBy(s => s.DegreeAbbr);
+                    break;
+            }
+
+            return View(await degree.AsNoTracking().ToListAsync());
+        }
         // GET: Degrees/Details/5
         public async Task<IActionResult> Details(int? id)
         {

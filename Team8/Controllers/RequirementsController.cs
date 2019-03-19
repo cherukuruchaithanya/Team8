@@ -20,13 +20,40 @@ namespace Team8.Controllers
         }
 
         // GET: Requirements
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Requirements.ToListAsync());
-        }
+            ViewData["RequirementAbrrevSortParm"] = String.IsNullOrEmpty(sortOrder) ? "requirementAbrrev_desc" : "";
+            ViewData["RequirementNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "requirementName_desc" : "RequirementName";
+            ViewData["currentFilter"] = searchString;
 
-        // GET: Requirements/Details/5
-        public async Task<IActionResult> Details(int? id)
+            var requirement = from s in _context.Requirements
+                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                requirement = requirement.Where(s => s.RequirementName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "requirementAbrrev_desc":
+                    requirement = requirement.OrderByDescending(s => s.RequirementAbbr);
+                    break;
+                case "RequirementName":
+                    requirement = requirement.OrderBy(s => s.RequirementName);
+                    break;
+                case "requirementName_desc":
+                    requirement = requirement.OrderByDescending(s => s.RequirementName);
+                    break;
+                default:
+                    requirement = requirement.OrderBy(s => s.RequirementAbbr);
+                    break;
+            }
+
+            return View(await requirement.AsNoTracking().ToListAsync());
+        }
+            // GET: Requirements/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {

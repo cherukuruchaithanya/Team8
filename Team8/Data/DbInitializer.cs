@@ -124,9 +124,15 @@ namespace Team8.Data
             else
             {
                 var all = new Student[]
-                {   new Student {StudentId = 533568, Family = "Bodepudi", Given = "Mallikarjuna" },
-                     new Student {StudentId = 533708, Family = "Kancharla", Given = "Sai Krishna Teja" },
-                     new Student {StudentId = 533897, Family = "Atluri", Given = "Mouni Krishna" }
+                {
+                    new Student {StudentId = 531495, Family = "Cherukuru", Given = "Chaithanya" },
+
+new Student {StudentId = 531502, Family = "Midhun", Given = "Kurapati" },
+
+new Student {StudentId = 531369, Family = "Girish", Given = "Guntuku" },
+
+  new Student {StudentId = 525956, Family = "Pappu", Given = "sha" },
+
                   };
                 Console.WriteLine($"Inserted {all.Length} new Students.");
                 foreach (Student i in all) { context.Students.Add(i); }
@@ -139,13 +145,14 @@ namespace Team8.Data
             {
                 var all = new DegreePlan[]
                 {
-                     new DegreePlan {DegreePlanId = 5681, DegreeId = 4, StudentId = 533568, DegreePlanAbbrev = "Fast", DegreePlanName = "Super Fast MS ACS", SortOrder = 1 },
-                     new DegreePlan {DegreePlanId = 7081, DegreeId = 4, StudentId = 533708, DegreePlanAbbrev = "Fast", DegreePlanName = "Super Fast MS ACS", SortOrder = 1 },
-                     new DegreePlan {DegreePlanId = 8971, DegreeId = 4, StudentId = 533897, DegreePlanAbbrev = "Fast", DegreePlanName = "Super Fast MS ACS", SortOrder = 1 },
-                     new DegreePlan {DegreePlanId = 5682, DegreeId = 4, StudentId = 533568, DegreePlanAbbrev = "Slow", DegreePlanName = "Slow and Easy MS ACS", SortOrder = 2 },
-                     new DegreePlan {DegreePlanId = 7082, DegreeId = 4, StudentId = 533708, DegreePlanAbbrev = "Slow", DegreePlanName = "Slow and Easy MS ACS", SortOrder = 2 },
-                     new DegreePlan {DegreePlanId = 8972, DegreeId = 4, StudentId = 533897, DegreePlanAbbrev = "Slow", DegreePlanName = "Slow and Easy MS ACS", SortOrder = 2 },
-
+                     new DegreePlan {DegreePlanId = 5681, DegreeId = 4, StudentId = 531369, DegreePlanAbbrev = "S", DegreePlanName = "With Summer", SortOrder = 1 },
+                     new DegreePlan {DegreePlanId = 7081, DegreeId = 4, StudentId = 531369, DegreePlanAbbrev = "S", DegreePlanName = "With Summer", SortOrder = 1 },
+                     new DegreePlan {DegreePlanId = 8971, DegreeId = 4, StudentId = 531495, DegreePlanAbbrev = "S", DegreePlanName = "With Summer", SortOrder = 1 },
+                     new DegreePlan {DegreePlanId = 8975, DegreeId = 4, StudentId = 531495, DegreePlanAbbrev = "S", DegreePlanName = "With Summer", SortOrder = 1 },
+                     new DegreePlan {DegreePlanId = 5682, DegreeId = 4, StudentId = 531502, DegreePlanAbbrev = "NS", DegreePlanName = "No Summer", SortOrder = 2 },
+                     new DegreePlan {DegreePlanId = 7082, DegreeId = 4, StudentId = 531502, DegreePlanAbbrev = "NS", DegreePlanName = "No Summer", SortOrder = 2 },
+                     new DegreePlan {DegreePlanId = 8972, DegreeId = 4, StudentId = 525956, DegreePlanAbbrev = "NS", DegreePlanName = "No Summer", SortOrder = 2 },
+                     new DegreePlan {DegreePlanId = 8977, DegreeId = 4, StudentId = 525956, DegreePlanAbbrev = "NS", DegreePlanName = "No Summer", SortOrder = 2 },
                   };
                 Console.WriteLine($"Inserted {all.Length} new DegreePlans.");
                 foreach (DegreePlan i in all) { context.DegreePlans.Add(i); }
@@ -158,24 +165,24 @@ namespace Team8.Data
             {
                 var all = new StudentTerm[]
                 {
-                     new StudentTerm {StudentTermId = 5335681, StudentId = 533568, Term = 1, Abbrev = "F18", Name = "Fall 2018" },
-                    new StudentTerm {StudentTermId = 5335682, StudentId = 533568, Term = 2, Abbrev = "SP19", Name = "Spring 2019" },
-                    new StudentTerm {StudentTermId = 5335683, StudentId = 533568, Term = 3, Abbrev = "SU19", Name = "Summer 2019" },
-                    new StudentTerm {StudentTermId = 5335684, StudentId = 533568, Term = 4, Abbrev = "F19", Name = "Fall 2019" },
-                    new StudentTerm {StudentTermId = 5335685, StudentId = 533568, Term = 5, Abbrev = "SP20", Name = "Spring 2020" },
-                    new StudentTerm {StudentTermId = 5335686, StudentId = 533568, Term = 6, Abbrev = "SU20", Name = "Summer 2020" },
-                    new StudentTerm {StudentTermId = 5337081, StudentId = 533708, Term = 1, Abbrev = "F18", Name = "Fall 2018" },
-                    new StudentTerm {StudentTermId = 5337082, StudentId = 533708, Term = 2, Abbrev = "SP19", Name = "Spring 2019" },
-                    new StudentTerm {StudentTermId = 5337083, StudentId = 533708, Term = 3, Abbrev = "SU19", Name = "Summer 2019" },
-                    new StudentTerm {StudentTermId = 5337084, StudentId = 533708, Term = 4, Abbrev = "F19", Name = "Fall 2019" },
-                    new StudentTerm {StudentTermId = 5337085, StudentId = 533708, Term = 5, Abbrev = "SP20", Name = "Spring 2020" },
-                    new StudentTerm {StudentTermId = 5337086, StudentId = 533708, Term = 6, Abbrev = "SU20", Name = "Summer 2020" },
-                    new StudentTerm {StudentTermId = 5338971, StudentId = 533897, Term = 1, Abbrev = "SP20", Name = "Spring 2020" },
-                    new StudentTerm {StudentTermId = 5338972, StudentId = 533897, Term = 2, Abbrev = "FA20", Name = "Fall 2020" },
-                    new StudentTerm {StudentTermId = 5338973, StudentId = 533897, Term = 3, Abbrev = "SP21", Name = "Spring 2021" },
-                    new StudentTerm {StudentTermId = 5338974, StudentId = 533897, Term = 4, Abbrev = "SU21", Name = "Summer 2021" },
-                    new StudentTerm {StudentTermId = 5338975, StudentId = 533897, Term = 5, Abbrev = "F21", Name = "Fall 2021" },
-                    new StudentTerm {StudentTermId = 5338976, StudentId = 533897, Term = 6, Abbrev = "SP2022", Name = "Spring 2022"},
+                     new StudentTerm {StudentTermId = 5335681, StudentId = "533568", Term = 1, Abbrev = "F18", Name = "Fall 2018" },
+                    new StudentTerm {StudentTermId = 5335682, StudentId = "533568", Term = 2, Abbrev = "SP19", Name = "Spring 2019" },
+                    new StudentTerm {StudentTermId = 5335683, StudentId = "533568", Term = 3, Abbrev = "SU19", Name = "Summer 2019" },
+                    new StudentTerm {StudentTermId = 5335684, StudentId = "533568", Term = 4, Abbrev = "F19", Name = "Fall 2019" },
+                    new StudentTerm {StudentTermId = 5335685, StudentId = "533568", Term = 5, Abbrev = "SP20", Name = "Spring 2020" },
+                    new StudentTerm {StudentTermId = 5335686, StudentId = "533568", Term = 6, Abbrev = "SU20", Name = "Summer 2020" },
+                    new StudentTerm {StudentTermId = 5337081, StudentId = "533708", Term = 1, Abbrev = "F18", Name = "Fall 2018" },
+                    new StudentTerm {StudentTermId = 5337082, StudentId = "533708", Term = 2, Abbrev = "SP19", Name = "Spring 2019" },
+                    new StudentTerm {StudentTermId = 5337083, StudentId = "533708", Term = 3, Abbrev = "SU19", Name = "Summer 2019" },
+                    new StudentTerm {StudentTermId = 5337084, StudentId = "533708", Term = 4, Abbrev = "F19", Name = "Fall 2019" },
+                    new StudentTerm {StudentTermId = 5337085, StudentId = "533708", Term = 5, Abbrev = "SP20", Name = "Spring 2020" },
+                    new StudentTerm {StudentTermId = 5337086, StudentId = "533708", Term = 6, Abbrev = "SU20", Name = "Summer 2020" },
+                    new StudentTerm {StudentTermId = 5338971, StudentId = "533897", Term = 1, Abbrev = "SP20", Name = "Spring 2020" },
+                    new StudentTerm {StudentTermId = 5338972, StudentId = "533897", Term = 2, Abbrev = "FA20", Name = "Fall 2020" },
+                    new StudentTerm {StudentTermId = 5338973, StudentId = "533897", Term = 3, Abbrev = "SP21", Name = "Spring 2021" },
+                    new StudentTerm {StudentTermId = 5338974, StudentId = "533897", Term = 4, Abbrev = "SU21", Name = "Summer 2021" },
+                    new StudentTerm {StudentTermId = 5338975, StudentId = "533897", Term = 5, Abbrev = "F21", Name = "Fall 2021" },
+                    new StudentTerm {StudentTermId = 5338976, StudentId = "533897", Term = 6, Abbrev = "SP2022", Name = "Spring 2022"},
 
                   };
                 Console.WriteLine($"Inserted {all.Length} new StudentTerms.");

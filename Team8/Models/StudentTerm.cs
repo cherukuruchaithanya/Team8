@@ -13,7 +13,7 @@ namespace Team8.Models
         public int StudentTermId { get; set; }
 
         [ForeignKey("StudentId")]
-        public int StudentId { get; set; }
+        public String StudentId { get; set; }
 
         public int Term { get; set; }
 

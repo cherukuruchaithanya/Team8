@@ -20,10 +20,44 @@ namespace Team8.Controllers
         }
 
         // GET: StudentTerms
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            var applicationDbContext = _context.StudentTerms.Include(s => s.Student);
-            return View(await applicationDbContext.ToListAsync());
+            ViewData["StudentIDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "studentID_desc" : "";
+            ViewData["TermLabelSortParm"] = String.IsNullOrEmpty(sortOrder) ? "termLabel_desc" : "TermLabel";
+            ViewData["TermIDSortParm"] = sortOrder == "TermId" ? "termID_desc" : "TermID";
+            ViewData["currentFilter"] = searchString;
+
+            var studentTerm = from s in _context.StudentTerms
+                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                studentTerm = studentTerm.Where(s => s.StudentId.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "studentID_desc":
+                    studentTerm = studentTerm.OrderByDescending(s => s.StudentId);
+                    break;
+                case "TermLabel":
+                    studentTerm = studentTerm.OrderBy(s => s.Term);
+                    break;
+                case "termLabel_desc":
+                    studentTerm = studentTerm.OrderByDescending(s => s.Term);
+                    break;
+                case "TermID":
+                    studentTerm = studentTerm.OrderBy(s => s.StudentTermId);
+                    break;
+                case "termID_desc":
+                    studentTerm = studentTerm.OrderByDescending(s => s.StudentTermId);
+                    break;
+                default:
+                    studentTerm = studentTerm.OrderBy(s => s.StudentId);
+                    break;
+            }
+
+            return View(await studentTerm.AsNoTracking().ToListAsync());
         }
 
         // GET: StudentTerms/Details/5
