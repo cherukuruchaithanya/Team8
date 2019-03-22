@@ -20,11 +20,54 @@ namespace Team8.Controllers
         }
 
         // GET: DegreePlans
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            var applicationDbContext = _context.DegreePlans.Include(d => d.Degree).Include(d => d.Student);
-            return View(await applicationDbContext.ToListAsync());
+
+            ViewData["DegreePlanAbrrevSortParm"] = String.IsNullOrEmpty(sortOrder) ? "degreePlanAbreev_desc" : "";
+            ViewData["DegreePlanNameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "degreePlanName_desc" : "DegreePlanName";
+            ViewData["DegreeSortParm"] = sortOrder == "Degree" ? "degree_desc" : "Degree";
+            ViewData["StudentSortParm"] = sortOrder == "Student" ? "student_desc" : "Student";
+            ViewData["currentFilter"] = searchString;
+
+            var degreePlans = from s in _context.DegreePlans.Include(d => d.Degree).Include(d => d.Student)
+                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                degreePlans = degreePlans.Where(s => s.DegreePlanName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "degreePlanAbreev_desc":
+                    degreePlans = degreePlans.OrderByDescending(s => s.DegreePlanAbbrev);
+                    break;
+                case "DegreePlanName":
+                    degreePlans = degreePlans.OrderBy(s => s.DegreePlanName);
+                    break;
+                case "degreePlanName_desc":
+                    degreePlans = degreePlans.OrderByDescending(s => s.DegreePlanName);
+                    break;
+                case "Degree":
+                    degreePlans = degreePlans.OrderBy(s => s.DegreeId);
+                    break;
+                case "degree_desc":
+                    degreePlans = degreePlans.OrderByDescending(s => s.DegreeId);
+                    break;
+                case "Student":
+                    degreePlans = degreePlans.OrderBy(s => s.StudentId);
+                    break;
+                case "student_desc":
+                    degreePlans = degreePlans.OrderByDescending(s => s.StudentId);
+                    break;
+                default:
+                    degreePlans = degreePlans.OrderBy(s => s.DegreePlanAbbrev);
+                    break;
+            }
+
+            return View(await degreePlans.AsNoTracking().ToListAsync());
         }
+
 
         // GET: DegreePlans/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -49,15 +92,15 @@ namespace Team8.Controllers
         // GET: DegreePlans/Create
         public IActionResult Create()
         {
-            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName");
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName");
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbbr");
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Family");
             return View();
         }
 
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DegreePlanId,DegreeId,StudentId,DegreePlans,DegreePlanName,SortOrder")] DegreePlan degreePlan)
+        public async Task<IActionResult> Create([Bind("DegreePlanId,DegreeId,StudentId,DegreePlanAbbrev,DegreePlanName,SortOrder")] DegreePlan degreePlan)
         {
             if (ModelState.IsValid)
             {
@@ -65,8 +108,8 @@ namespace Team8.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName", degreePlan.DegreeId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", degreePlan.StudentId);
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbbr", degreePlan.DegreeId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Family", degreePlan.StudentId);
             return View(degreePlan);
         }
 
@@ -83,8 +126,8 @@ namespace Team8.Controllers
             {
                 return NotFound();
             }
-            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName", degreePlan.DegreeId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", degreePlan.StudentId);
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbbr", degreePlan.DegreeId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Family", degreePlan.StudentId);
             return View(degreePlan);
         }
 
@@ -93,7 +136,7 @@ namespace Team8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DegreePlanId,DegreeId,StudentId,DegreePlans,DegreePlanName,SortOrder")] DegreePlan degreePlan)
+        public async Task<IActionResult> Edit(int id, [Bind("DegreePlanId,DegreeId,StudentId,DegreePlanAbbrev,DegreePlanName,SortOrder")] DegreePlan degreePlan)
         {
             if (id != degreePlan.DegreePlanId)
             {
@@ -120,8 +163,8 @@ namespace Team8.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeName", degreePlan.DegreeId);
-            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "FirstName", degreePlan.StudentId);
+            ViewData["DegreeId"] = new SelectList(_context.Degrees, "DegreeId", "DegreeAbbr", degreePlan.DegreeId);
+            ViewData["StudentId"] = new SelectList(_context.Students, "StudentId", "Family", degreePlan.StudentId);
             return View(degreePlan);
         }
 

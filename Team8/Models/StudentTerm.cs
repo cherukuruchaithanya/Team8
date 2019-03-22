@@ -13,7 +13,7 @@ namespace Team8.Models
         public int StudentTermId { get; set; }
 
         [ForeignKey("StudentId")]
-        public int StudentId { get; set; }
+        public String StudentId { get; set; }
 
         public int Term { get; set; }
 
@@ -25,7 +25,7 @@ namespace Team8.Models
         [Required]
         [StringLength(20, MinimumLength = 3)]
         [Display(Name = "Name")]
-        public string TermLabel { get; set; }
+        public string Name { get; set; }
 
         // navigation properties provide more information for related entities
         public Student Student { get; set; }

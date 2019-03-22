@@ -20,10 +20,45 @@ namespace Team8.Controllers
         }
 
         // GET: DegreePlanTermRequirements
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            var applicationDbContext = _context.DegreePlanTermRequirements.Include(d => d.DegreePlan).Include(d => d.Requirement);
-            return View(await applicationDbContext.ToListAsync());
+
+            ViewData["TermIDSortParm"] = sortOrder == "Term" ? "termId_desc" : "";
+            ViewData["DegreePlanSortParm"] = sortOrder == "DegreePlan" ? "degreePlan_desc" : "DegreePlan";
+            ViewData["RequirementSortParm"] = sortOrder == "Requirement" ? "requirement_desc" : "Requirement";
+            ViewData["currentFilter"] = searchString;
+
+            var degreePlanTermRequirement = from s in _context.DegreePlanTermRequirements.Include(d => d.DegreePlan).Include(d => d.Requirement)
+                                            select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                degreePlanTermRequirement = degreePlanTermRequirement.Where(s => s.Term == Convert.ToInt32(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "termID_desc":
+                    degreePlanTermRequirement = degreePlanTermRequirement.OrderByDescending(s => s.Term);
+                    break;
+                case "DegreePlan":
+                    degreePlanTermRequirement = degreePlanTermRequirement.OrderBy(s => s.DegreePlanId);
+                    break;
+                case "degreePlan_desc":
+                    degreePlanTermRequirement = degreePlanTermRequirement.OrderByDescending(s => s.DegreePlanId);
+                    break;
+                case "Requirement":
+                    degreePlanTermRequirement = degreePlanTermRequirement.OrderBy(s => s.RequirementId);
+                    break;
+                case "requirement_desc":
+                    degreePlanTermRequirement = degreePlanTermRequirement.OrderByDescending(s => s.RequirementId);
+                    break;
+                default:
+                    degreePlanTermRequirement = degreePlanTermRequirement.OrderBy(s => s.Term);
+                    break;
+            }
+
+            return View(await degreePlanTermRequirement.AsNoTracking().ToListAsync());
         }
 
         // GET: DegreePlanTermRequirements/Details/5
@@ -49,8 +84,8 @@ namespace Team8.Controllers
         // GET: DegreePlanTermRequirements/Create
         public IActionResult Create()
         {
-            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanName");
-            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName");
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbrev");
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementAbbr");
             return View();
         }
 
@@ -67,8 +102,8 @@ namespace Team8.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanName", degreePlanTermRequirement.DegreePlanId);
-            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName", degreePlanTermRequirement.RequirementId);
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbrev", degreePlanTermRequirement.DegreePlanId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementAbbr", degreePlanTermRequirement.RequirementId);
             return View(degreePlanTermRequirement);
         }
 
@@ -85,8 +120,8 @@ namespace Team8.Controllers
             {
                 return NotFound();
             }
-            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanName", degreePlanTermRequirement.DegreePlanId);
-            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName", degreePlanTermRequirement.RequirementId);
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbrev", degreePlanTermRequirement.DegreePlanId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementAbbr", degreePlanTermRequirement.RequirementId);
             return View(degreePlanTermRequirement);
         }
 
@@ -122,8 +157,8 @@ namespace Team8.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanName", degreePlanTermRequirement.DegreePlanId);
-            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementName", degreePlanTermRequirement.RequirementId);
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbrev", degreePlanTermRequirement.DegreePlanId);
+            ViewData["RequirementId"] = new SelectList(_context.Requirements, "RequirementId", "RequirementAbbr", degreePlanTermRequirement.RequirementId);
             return View(degreePlanTermRequirement);
         }
 

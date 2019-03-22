@@ -13,12 +13,12 @@ namespace Team8.Models
         [Required]
         [StringLength(40, MinimumLength = 3)]
         [Display(Name = "Family")]
-        public string LastName { get; set; }
+        public string Family { get; set; }
 
         [Required]
         [StringLength(40, MinimumLength = 3)]
         [Display(Name = "Given")]
-        public string FirstName { get; set; }
+        public string Given { get; set; }
   
 
         // navigation properties provide more information for related entities

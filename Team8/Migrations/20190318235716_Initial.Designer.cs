@@ -10,7 +10,7 @@ using Team8.Data;
 namespace Team8.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190316082451_Initial")]
+    [Migration("20190318235716_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -190,13 +190,13 @@ namespace Team8.Migrations
                 {
                     b.Property<int>("DegreeId");
 
+                    b.Property<string>("DegreeAbbr")
+                        .IsRequired()
+                        .HasMaxLength(6);
+
                     b.Property<string>("DegreeName")
                         .IsRequired()
                         .HasMaxLength(20);
-
-                    b.Property<string>("Degrees")
-                        .IsRequired()
-                        .HasMaxLength(6);
 
                     b.HasKey("DegreeId");
 
@@ -209,13 +209,13 @@ namespace Team8.Migrations
 
                     b.Property<int>("DegreeId");
 
+                    b.Property<string>("DegreePlanAbbrev")
+                        .IsRequired()
+                        .HasMaxLength(6);
+
                     b.Property<string>("DegreePlanName")
                         .IsRequired()
                         .HasMaxLength(20);
-
-                    b.Property<string>("DegreePlans")
-                        .IsRequired()
-                        .HasMaxLength(6);
 
                     b.Property<int>("SortOrder");
 
@@ -280,13 +280,13 @@ namespace Team8.Migrations
 
                     b.Property<int>("IsSummer");
 
+                    b.Property<string>("RequirementAbbr")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
                     b.Property<string>("RequirementName")
                         .IsRequired()
                         .HasMaxLength(24);
-
-                    b.Property<string>("Requirements")
-                        .IsRequired()
-                        .HasMaxLength(10);
 
                     b.HasKey("RequirementId");
 
@@ -297,11 +297,11 @@ namespace Team8.Migrations
                 {
                     b.Property<int>("StudentId");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("Family")
                         .IsRequired()
                         .HasMaxLength(40);
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("Given")
                         .IsRequired()
                         .HasMaxLength(40);
 
@@ -318,17 +318,19 @@ namespace Team8.Migrations
                         .IsRequired()
                         .HasMaxLength(6);
 
-                    b.Property<int>("StudentId");
-
-                    b.Property<int>("Term");
-
-                    b.Property<string>("TermLabel")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(20);
 
+                    b.Property<string>("StudentId");
+
+                    b.Property<int?>("StudentId1");
+
+                    b.Property<int>("Term");
+
                     b.HasKey("StudentTermId");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex("StudentId1");
 
                     b.ToTable("StudentTerm");
                 });
@@ -421,8 +423,7 @@ namespace Team8.Migrations
                 {
                     b.HasOne("Team8.Models.Student", "Student")
                         .WithMany("StudentTerms")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("StudentId1");
                 });
 #pragma warning restore 612, 618
         }

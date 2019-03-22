@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Team8.Data;
 
 namespace Team8.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190318232733_Initnial")]
+    partial class Initnial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -320,15 +322,13 @@ namespace Team8.Migrations
                         .IsRequired()
                         .HasMaxLength(20);
 
-                    b.Property<string>("StudentId");
-
-                    b.Property<int?>("StudentId1");
+                    b.Property<int>("StudentId");
 
                     b.Property<int>("Term");
 
                     b.HasKey("StudentTermId");
 
-                    b.HasIndex("StudentId1");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("StudentTerm");
                 });
@@ -421,7 +421,8 @@ namespace Team8.Migrations
                 {
                     b.HasOne("Team8.Models.Student", "Student")
                         .WithMany("StudentTerms")
-                        .HasForeignKey("StudentId1");
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

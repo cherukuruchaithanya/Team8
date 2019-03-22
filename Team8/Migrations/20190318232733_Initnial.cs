@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Team8.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Initnial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,7 +52,7 @@ namespace Team8.Migrations
                 columns: table => new
                 {
                     DegreeId = table.Column<int>(nullable: false),
-                    Degrees = table.Column<string>(maxLength: 6, nullable: false),
+                    DegreeAbbr = table.Column<string>(maxLength: 6, nullable: false),
                     DegreeName = table.Column<string>(maxLength: 20, nullable: false)
                 },
                 constraints: table =>
@@ -65,8 +65,8 @@ namespace Team8.Migrations
                 columns: table => new
                 {
                     RequirementId = table.Column<int>(nullable: false),
-                    Requirements = table.Column<string>(maxLength: 10, nullable: false),
-                    RequirementName = table.Column<string>(maxLength: 24, nullable: false),
+                    RequirementAbbr = table.Column<string>(maxLength: 50, nullable: false),
+                    RequirementName = table.Column<string>(maxLength: 50, nullable: false),
                     IsSummer = table.Column<int>(nullable: false),
                     IsSpring = table.Column<int>(nullable: false),
                     IsFall = table.Column<int>(nullable: false)
@@ -81,8 +81,8 @@ namespace Team8.Migrations
                 columns: table => new
                 {
                     StudentId = table.Column<int>(nullable: false),
-                    LastName = table.Column<string>(maxLength: 40, nullable: false),
-                    FirstName = table.Column<string>(maxLength: 40, nullable: false)
+                    Family = table.Column<string>(maxLength: 40, nullable: false),
+                    Given = table.Column<string>(maxLength: 40, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -227,7 +227,7 @@ namespace Team8.Migrations
                     DegreePlanId = table.Column<int>(nullable: false),
                     DegreeId = table.Column<int>(nullable: false),
                     StudentId = table.Column<int>(nullable: false),
-                    DegreePlans = table.Column<string>(maxLength: 6, nullable: false),
+                    DegreePlanAbbrev = table.Column<string>(maxLength: 6, nullable: false),
                     DegreePlanName = table.Column<string>(maxLength: 20, nullable: false),
                     SortOrder = table.Column<int>(nullable: false)
                 },
@@ -256,7 +256,7 @@ namespace Team8.Migrations
                     StudentId = table.Column<int>(nullable: false),
                     Term = table.Column<int>(nullable: false),
                     Abbrev = table.Column<string>(maxLength: 6, nullable: false),
-                    TermLabel = table.Column<string>(maxLength: 20, nullable: false)
+                    Name = table.Column<string>(maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {

@@ -22,7 +22,7 @@ namespace Team8.Models
         [Required]
         [StringLength(6, MinimumLength = 3)]
         [Display(Name = "Abbreviation")]
-        public String DegreePlans { get; set; }
+        public String DegreePlanAbbrev { get; set; }
 
         [Required]
         [StringLength(20, MinimumLength = 3)]
