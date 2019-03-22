@@ -10,8 +10,8 @@ using Team8.Data;
 namespace Team8.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190318235716_Initial")]
-    partial class Initial
+    [Migration("20190322193410_intial")]
+    partial class intial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -282,11 +282,11 @@ namespace Team8.Migrations
 
                     b.Property<string>("RequirementAbbr")
                         .IsRequired()
-                        .HasMaxLength(30);
+                        .HasMaxLength(50);
 
                     b.Property<string>("RequirementName")
                         .IsRequired()
-                        .HasMaxLength(24);
+                        .HasMaxLength(50);
 
                     b.HasKey("RequirementId");
 

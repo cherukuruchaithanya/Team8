@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Team8.Migrations
 {
-    public partial class Initnial : Migration
+    public partial class intial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -253,20 +253,21 @@ namespace Team8.Migrations
                 columns: table => new
                 {
                     StudentTermId = table.Column<int>(nullable: false),
-                    StudentId = table.Column<int>(nullable: false),
+                    StudentId = table.Column<string>(nullable: true),
                     Term = table.Column<int>(nullable: false),
                     Abbrev = table.Column<string>(maxLength: 6, nullable: false),
-                    Name = table.Column<string>(maxLength: 20, nullable: false)
+                    Name = table.Column<string>(maxLength: 20, nullable: false),
+                    StudentId1 = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_StudentTerm", x => x.StudentTermId);
                     table.ForeignKey(
-                        name: "FK_StudentTerm_Student_StudentId",
-                        column: x => x.StudentId,
+                        name: "FK_StudentTerm_Student_StudentId1",
+                        column: x => x.StudentId1,
                         principalTable: "Student",
                         principalColumn: "StudentId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -366,9 +367,9 @@ namespace Team8.Migrations
                 column: "RequirementId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentTerm_StudentId",
+                name: "IX_StudentTerm_StudentId1",
                 table: "StudentTerm",
-                column: "StudentId");
+                column: "StudentId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
