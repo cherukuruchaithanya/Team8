@@ -194,7 +194,7 @@ new Student {StudentId = 531369, Family = "Girish", Given = "Guntuku" },
 
 
             // if we have DegreePlanTermRequirements already, skip adding, otherwise add
-            if (context.DegreePlanTermRequirements.Any()) { Console.WriteLine("DegreePlanTermRequirements already exist."); }
+           if (context.DegreePlanTermRequirements.Any()) { Console.WriteLine("DegreePlanTermRequirements already exist."); }
             else
             {
                 var all = new DegreePlanTermRequirement[]
