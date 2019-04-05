@@ -10,6 +10,7 @@ namespace Team8.Models
     {
         public int ID { get; set; }
         public string Description { get; set; }
+        public bool Done { get; set; }
 
         [Display(Name = "Created Date")]
         [DataType(DataType.Date)]
