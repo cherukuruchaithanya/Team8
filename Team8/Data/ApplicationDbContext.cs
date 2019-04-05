@@ -21,6 +21,7 @@ namespace Team8.Data
         public DbSet<Models.DegreePlan> DegreePlans { get; set; }
         public DbSet<Models.StudentTerm> StudentTerms { get; set; }
         public DbSet<Models.Student> Students { get; set; }
+        public DbSet<Team8.Models.Todo> Todo { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,6 +36,8 @@ namespace Team8.Data
             modelBuilder.Entity<Models.DegreePlan>().ToTable("DegreePlan");
             modelBuilder.Entity<Models.StudentTerm>().ToTable("StudentTerm");
             modelBuilder.Entity<Models.Student>().ToTable("Student");
+            modelBuilder.Entity<Models.Todo>().ToTable("Todo");
+
         }
     }
 }
