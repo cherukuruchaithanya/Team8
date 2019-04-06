@@ -35,6 +35,7 @@ namespace Team8
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             // Use SQL Database if in Azure, otherwise, use SQLite
+            // Use SQL Database if in Azure, otherwise, use SQLite
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
                 services.AddDbContext<ApplicationDbContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
