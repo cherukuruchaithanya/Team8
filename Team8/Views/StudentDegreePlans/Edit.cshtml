@@ -1,0 +1,195 @@
+﻿@model Team8.Models.StudentDegreePlan
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<!-- https://github.com/SortableJS/Sortable  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sortable/0.8.0/css/sortable-theme-bootstrap.min.css" />
+
+<!-- jsDelivr :: Sortable :: Latest (https://www.jsdelivr.com/package/npm/sortablejs) -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
+<h2>Edit</h2>
+
+<h4>StudentDegreePlan</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="StudentDegreePlanId" />
+            <div class="form-group">
+                <label asp-for="StudentId" class="control-label"></label>
+                <select asp-for="StudentId" class="form-control" asp-items="ViewBag.StudentId"></select>
+                <span asp-validation-for="StudentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DegreeId" class="control-label"></label>
+                <select asp-for="DegreeId" class="form-control" asp-items="ViewBag.DegreeId"></select>
+                <span asp-validation-for="DegreeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlanNumber" class="control-label"></label>
+                <input asp-for="PlanNumber" class="form-control" />
+                <span asp-validation-for="PlanNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlanAbbrev" class="control-label"></label>
+                <input asp-for="PlanAbbrev" class="form-control" />
+                <span asp-validation-for="PlanAbbrev" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlanName" class="control-label"></label>
+                <input asp-for="PlanName" class="form-control" />
+                <span asp-validation-for="PlanName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DegreeStatusId" class="control-label"></label>
+                <select asp-for="DegreeStatusId" class="form-control" asp-items="ViewBag.DegreeStatusId"></select>
+                <span asp-validation-for="DegreeStatusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IncludesInternship" /> @Html.DisplayNameFor(model => model.IncludesInternship)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-4">
+                <aside id="req" class="list-group col" style="background-color: azure">
+                    <h2>Reqmt</h2>
+
+                    @{
+                        ICollection<DegreeRequirement> plannedList = new List<DegreeRequirement>();
+
+                        foreach (var t in Model.PlanTerms.OrderBy(pt => pt.TermNumber))
+                        {
+                           foreach (var tr in t.PlanTermRequirements)
+                            {
+                                plannedList.Add(tr.DegreeRequirement);
+                          }
+                        }
+                    }
+                                       
+                    @foreach (var r in Model.Degree.DegreeRequirements.Except(plannedList).OrderBy(dr => dr.RequirementNumber))
+                    {
+                        <p class="list-group-item">@(r.RequirementAbbrev + " (" + r.DegreeRequirementId + ")")</p>
+                    }
+
+                </aside>
+            </div>
+            <div class="col-md-8">
+                @foreach (var t in Model.PlanTerms.OrderBy(pt => pt.TermNumber))
+                {
+                    <article id="@("term" + t.TermNumber.ToString())" class="list-group col" style="background-color: azure">
+                        <h2>@(t.TermAbbrev + " (" + t.PlanTermId + ")")</h2>
+
+                        @foreach (var tr in t.PlanTermRequirements)
+                        {
+                            var degreeRequirement = plannedList.First(dr => dr.DegreeRequirementId == tr.DegreeRequirementId);
+                             <p class="list-group-item">@( degreeRequirement.RequirementAbbrev + " (" + tr.DegreeRequirementId + ")" ) </p>
+                        }
+                    </article>
+                }
+            </div>
+        </div>
+    </div>
+    </div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    <script>
+
+        const reqElement = document.getElementById('req')
+
+        const t1Element = document.getElementById('term1')
+        const t2Element = document.getElementById('term2')
+        const t3Element = document.getElementById('term3')
+        const t4Element = document.getElementById('term4')
+        const t5Element = document.getElementById('term5')
+        const t6Element = document.getElementById('term6')
+
+        new Sortable(reqElement, {
+            group: {
+                name: 'shared'
+            },
+            animation: 150,
+            fallbackOnBody: true,
+            swapThreshold: 0.65,
+            ghostClass: 'blue-background-class'
+        });
+
+        new Sortable(t1Element, {
+            group: {
+                name: 'shared'
+            },
+            animation: 150,
+            fallbackOnBody: true,
+            swapThreshold: 0.65,
+            ghostClass: 'blue-background-class'
+        });
+
+        new Sortable(t2Element, {
+            group: {
+                name: 'shared'
+            },
+            animation: 150,
+            fallbackOnBody: true,
+            swapThreshold: 0.65,
+            ghostClass: 'blue-background-class'
+        });
+
+        new Sortable(t3Element, {
+            group: {
+                name: 'shared'
+            },
+            animation: 150,
+            fallbackOnBody: true,
+            swapThreshold: 0.65,
+            ghostClass: 'blue-background-class'
+        });
+
+        new Sortable(t4Element, {
+            group: {
+                name: 'shared'
+            },
+            animation: 150,
+            fallbackOnBody: true,
+            swapThreshold: 0.65,
+            ghostClass: 'blue-background-class'
+        });
+
+        new Sortable(t5Element, {
+            group: {
+                name: 'shared'
+            },
+            animation: 150,
+            fallbackOnBody: true,
+            swapThreshold: 0.65,
+            ghostClass: 'blue-background-class'
+        });
+
+        new Sortable(t6Element, {
+            group: {
+                name: 'shared'
+            },
+            animation: 150,
+            fallbackOnBody: true,
+            swapThreshold: 0.65,
+            ghostClass: 'blue-background-class'
+        });
+
+    </script>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+

@@ -1,0 +1,66 @@
+﻿@model Team8.Models.StudentDegreePlan
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>StudentDegreePlan</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StudentDegreePlanId" class="control-label"></label>
+                <input asp-for="StudentDegreePlanId" class="form-control" />
+                <span asp-validation-for="StudentDegreePlanId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentId" class="control-label"></label>
+                <select asp-for="StudentId" class ="form-control" asp-items="ViewBag.StudentId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DegreeId" class="control-label"></label>
+                <select asp-for="DegreeId" class ="form-control" asp-items="ViewBag.DegreeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlanNumber" class="control-label"></label>
+                <input asp-for="PlanNumber" class="form-control" />
+                <span asp-validation-for="PlanNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlanAbbrev" class="control-label"></label>
+                <input asp-for="PlanAbbrev" class="form-control" />
+                <span asp-validation-for="PlanAbbrev" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlanName" class="control-label"></label>
+                <input asp-for="PlanName" class="form-control" />
+                <span asp-validation-for="PlanName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DegreeStatusId" class="control-label"></label>
+                <select asp-for="DegreeStatusId" class ="form-control" asp-items="ViewBag.DegreeStatusId"></select>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IncludesInternship" /> @Html.DisplayNameFor(model => model.IncludesInternship)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
