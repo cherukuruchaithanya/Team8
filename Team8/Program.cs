@@ -1,9 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Team8.Data;
+using Microsoft.Extensions.DependencyInjection; // Needed for CreateScope
+using Team8.Data; // needed for ApplicationDbContext
+using System;
 
 namespace Team8
 {
@@ -12,12 +12,8 @@ namespace Team8
         public static void Main(string[] args)
         {
             var host = BuildWebHost(args);
-
             using (var scope = host.Services.CreateScope())
             {
-                ILogger LOG = ProgramLogger.CreateLogger();
-                LOG.LogInformation("Logger created.");
-
                 var services = scope.ServiceProvider;
                 try
                 {
@@ -26,15 +22,18 @@ namespace Team8
                 }
                 catch (Exception ex)
                 {
-                    LOG.LogError(ex, "An error occurred while seeding the database.");
+                    //  var logger = services.GetRequiredService<ILogger<Program>>();
+                    // logger.LogError(ex, "An error occurred while seeding the database. \n" + ex.InnerException.Message);
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while seeding the database. \n" + ex.InnerException.Message);
+
                 }
             }
             host.Run();
         }
-
         public static IWebHost BuildWebHost(string[] args) =>
-          WebHost.CreateDefaultBuilder(args)
-          .UseStartup<Startup>()
-          .Build();
+             WebHost.CreateDefaultBuilder(args)
+                 .UseStartup<Startup>()
+                 .Build();
     }
 }

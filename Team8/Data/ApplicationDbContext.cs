@@ -1,36 +1,41 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Team8.Models;
 
 namespace Team8.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser> {
-    public ApplicationDbContext (DbContextOptions<ApplicationDbContext> options) : base (options) {
-            
+    public class ApplicationDbContext : IdentityDbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
         }
-        
+    public DbSet<Degree> Degrees { get; set; }
+        public DbSet<Requirement> Requirements {get; set;}
+        public DbSet<Student> Students { get; set; }
+        public DbSet<DegreePlan> DegreePlans { get; set; }
+        public DbSet<DegreePlanTermRequirement> DegreePlanTermRequirements { get; set; }
+        public DbSet<DegreeRequirement> DegreeRequirements {get; set;}        
+        public DbSet<StudentTerm> StudentTerms {get; set;}
+       
 
-            public DbSet<DegreeStatus> DegreeStatuses { get; set; }
-            public DbSet<RequirementStatus> RequirementStatuses { get; set; }
-            public DbSet<Degree> Degrees { get; set; }
-            public DbSet<Student> Students { get; set; }
-            public DbSet<DegreeRequirement> DegreeRequirements { get; set; }
-            public DbSet<StudentDegreePlan> StudentDegreePlans { get; set; }
-            public DbSet<PlanTerm> PlanTerms { get; set; }
-            public DbSet<PlanTermRequirement> PlanTermRequirements { get; set; }
 
-            protected override void OnModelCreating (ModelBuilder builder) {
-              base.OnModelCreating (builder);
-
-     
-              builder.Entity<DegreeStatus> ().ToTable ("DegreeStatus");
-              builder.Entity<RequirementStatus> ().ToTable ("RequirementStatus");
-              builder.Entity<Degree> ().ToTable ("Degree");
-              builder.Entity<Student> ().ToTable ("Student");
-              builder.Entity<DegreeRequirement> ().ToTable ("DegreeRequirement");
-              builder.Entity<StudentDegreePlan> ().ToTable ("StudentDegreePlan");
-              builder.Entity<PlanTerm> ().ToTable ("PlanTerm");
-              builder.Entity<PlanTermRequirement> ().ToTable ("PlanTermRequirement");
-            }
-          }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Degree>().ToTable("Degree");
+            modelBuilder.Entity<Requirement>().ToTable("Requirement");
+            modelBuilder.Entity<DegreeRequirement>().ToTable("DegreeRequirement");
+            modelBuilder.Entity<DegreePlanTermRequirement>().ToTable("DegreeplanTermRequirement");
+            modelBuilder.Entity<DegreePlan>().ToTable("DegreePlan");
+            modelBuilder.Entity<Student>().ToTable("Student");
+            modelBuilder.Entity<StudentTerm>().ToTable("StudentTerm");
+      
         }
+
+      
+    }
+}

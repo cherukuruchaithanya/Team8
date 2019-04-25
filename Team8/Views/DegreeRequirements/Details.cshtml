@@ -4,35 +4,23 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h1>Details</h1>
 
 <div>
     <h4>DegreeRequirement</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.RequirementNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RequirementNumber)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RequirementAbbrev)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RequirementAbbrev)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RequirementName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RequirementName)
-        </dd>
-        <dt>
+    <dl class="row">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Degree)
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Degree.DegreeAbbrev)
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Degree.DegreeAbrrev)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Requirement)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Requirement.CourseName)
         </dd>
     </dl>
 </div>

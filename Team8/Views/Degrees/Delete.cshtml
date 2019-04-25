@@ -4,30 +4,30 @@
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
-<p class="text-danger">@ViewData["ErrorMessage"]</p>
+<h1>Delete</h1>
+
 <h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Degree</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DegreeAbbrev)
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DegreeAbrrev)
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DegreeAbbrev)
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DegreeAbrrev)
         </dd>
-        <dt>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DegreeName)
         </dt>
-        <dd>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DegreeName)
         </dd>
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="DegreeId" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
 </div>

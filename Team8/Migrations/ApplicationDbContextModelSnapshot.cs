@@ -63,73 +63,7 @@ namespace Team8.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClaimType");
-
-                    b.Property<string>("ClaimValue");
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.Property<string>("LoginProvider");
-
-                    b.Property<string>("ProviderKey");
-
-                    b.Property<string>("ProviderDisplayName");
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.Property<string>("UserId");
-
-                    b.Property<string>("RoleId");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.Property<string>("UserId");
-
-                    b.Property<string>("LoginProvider");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Value");
-
-                    b.HasKey("UserId", "LoginProvider", "Name");
-
-                    b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Team8.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -180,21 +114,141 @@ namespace Team8.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType");
+
+                    b.Property<string>("ClaimValue");
+
+                    b.Property<string>("UserId")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("ProviderKey")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("ProviderDisplayName");
+
+                    b.Property<string>("UserId")
+                        .IsRequired();
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("RoleId");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
+                });
+
             modelBuilder.Entity("Team8.Models.Degree", b =>
                 {
                     b.Property<int>("DegreeId");
 
-                    b.Property<string>("DegreeAbbrev")
+                    b.Property<string>("DegreeAbrrev")
                         .IsRequired()
-                        .HasMaxLength(10);
+                        .HasMaxLength(6);
 
                     b.Property<string>("DegreeName")
                         .IsRequired()
-                        .HasMaxLength(50);
+                        .HasMaxLength(20);
 
                     b.HasKey("DegreeId");
 
                     b.ToTable("Degree");
+                });
+
+            modelBuilder.Entity("Team8.Models.DegreePlan", b =>
+                {
+                    b.Property<int>("DegreePlanId");
+
+                    b.Property<int>("DegreeID");
+
+                    b.Property<string>("DegreePlanAbbrev")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("DegreePlanName")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.Property<bool>("Done");
+
+                    b.Property<int>("StudentID");
+
+                    b.HasKey("DegreePlanId");
+
+                    b.HasIndex("DegreeID");
+
+                    b.HasIndex("StudentID");
+
+                    b.ToTable("DegreePlan");
+                });
+
+            modelBuilder.Entity("Team8.Models.DegreePlanTermRequirement", b =>
+                {
+                    b.Property<int>("DegreePlanTermRequirementId");
+
+                    b.Property<int>("DegreePlanID");
+
+                    b.Property<int>("RequirementID");
+
+                    b.Property<int?>("StudentTermId");
+
+                    b.Property<int>("TermID");
+
+                    b.HasKey("DegreePlanTermRequirementId");
+
+                    b.HasIndex("DegreePlanID");
+
+                    b.HasIndex("RequirementID");
+
+                    b.HasIndex("StudentTermId");
+
+                    b.ToTable("DegreeplanTermRequirement");
                 });
 
             modelBuilder.Entity("Team8.Models.DegreeRequirement", b =>
@@ -203,135 +257,88 @@ namespace Team8.Migrations
 
                     b.Property<int>("DegreeId");
 
-                    b.Property<string>("RequirementAbbrev")
-                        .IsRequired()
-                        .HasMaxLength(10);
-
-                    b.Property<string>("RequirementName")
-                        .IsRequired()
-                        .HasMaxLength(60);
-
-                    b.Property<int>("RequirementNumber");
+                    b.Property<int>("RequirementId");
 
                     b.HasKey("DegreeRequirementId");
 
                     b.HasIndex("DegreeId");
 
+                    b.HasIndex("RequirementId");
+
                     b.ToTable("DegreeRequirement");
                 });
 
-            modelBuilder.Entity("Team8.Models.DegreeStatus", b =>
+            modelBuilder.Entity("Team8.Models.Requirement", b =>
                 {
-                    b.Property<int>("DegreeStatusId");
+                    b.Property<int>("RequirementID");
 
-                    b.Property<string>("Status")
+                    b.Property<string>("CourseName")
                         .IsRequired()
-                        .HasMaxLength(15);
+                        .HasMaxLength(50);
 
-                    b.HasKey("DegreeStatusId");
+                    b.Property<int>("DegreeId");
 
-                    b.ToTable("DegreeStatus");
-                });
-
-            modelBuilder.Entity("Team8.Models.PlanTerm", b =>
-                {
-                    b.Property<int>("PlanTermId");
-
-                    b.Property<int>("StudentDegreePlanId");
-
-                    b.Property<string>("TermAbbrev")
-                        .HasMaxLength(20);
-
-                    b.Property<int>("TermNumber");
-
-                    b.HasKey("PlanTermId");
-
-                    b.HasIndex("StudentDegreePlanId");
-
-                    b.ToTable("PlanTerm");
-                });
-
-            modelBuilder.Entity("Team8.Models.PlanTermRequirement", b =>
-                {
-                    b.Property<int>("PlanTermRequirementId");
-
-                    b.Property<int>("DegreeRequirementId");
-
-                    b.Property<int>("PlanTermId");
-
-                    b.Property<int>("RequirementStatusId");
-
-                    b.HasKey("PlanTermRequirementId");
-
-                    b.HasIndex("DegreeRequirementId");
-
-                    b.HasIndex("PlanTermId");
-
-                    b.HasIndex("RequirementStatusId");
-
-                    b.ToTable("PlanTermRequirement");
-                });
-
-            modelBuilder.Entity("Team8.Models.RequirementStatus", b =>
-                {
-                    b.Property<int>("RequirementStatusId");
-
-                    b.Property<string>("Status")
+                    b.Property<string>("RequirementAbbrev")
                         .IsRequired()
-                        .HasMaxLength(15);
+                        .HasMaxLength(30);
 
-                    b.HasKey("RequirementStatusId");
+                    b.Property<int?>("StudentTermId");
 
-                    b.ToTable("RequirementStatus");
+                    b.HasKey("RequirementID");
+
+                    b.HasIndex("DegreeId");
+
+                    b.HasIndex("StudentTermId");
+
+                    b.ToTable("Requirement");
                 });
 
             modelBuilder.Entity("Team8.Models.Student", b =>
                 {
                     b.Property<int>("StudentId");
 
-                    b.Property<string>("FamilyName")
-                        .HasMaxLength(50);
+                    b.Property<bool>("Done");
 
-                    b.Property<string>("GivenName")
+                    b.Property<string>("First")
                         .IsRequired()
-                        .HasMaxLength(50);
+                        .HasMaxLength(40);
+
+                    b.Property<string>("Last")
+                        .IsRequired()
+                        .HasMaxLength(40);
+
+                    b.Property<string>("Snumber");
+
+                    b.Property<int>("_919");
 
                     b.HasKey("StudentId");
 
                     b.ToTable("Student");
                 });
 
-            modelBuilder.Entity("Team8.Models.StudentDegreePlan", b =>
+            modelBuilder.Entity("Team8.Models.StudentTerm", b =>
                 {
-                    b.Property<int>("StudentDegreePlanId");
+                    b.Property<int>("StudentTermId");
 
-                    b.Property<int>("DegreeId");
+                    b.Property<int>("DegreePlanId");
 
-                    b.Property<int>("DegreeStatusId");
+                    b.Property<bool>("Done");
 
-                    b.Property<bool>("IncludesInternship");
+                    b.Property<int?>("StudentId");
 
-                    b.Property<string>("PlanAbbrev")
+                    b.Property<int>("Term");
+
+                    b.Property<string>("TermLabel")
                         .IsRequired()
                         .HasMaxLength(20);
 
-                    b.Property<string>("PlanName")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                    b.HasKey("StudentTermId");
 
-                    b.Property<int>("PlanNumber");
-
-                    b.Property<int>("StudentId");
-
-                    b.HasKey("StudentDegreePlanId");
-
-                    b.HasIndex("DegreeId");
-
-                    b.HasIndex("DegreeStatusId");
+                    b.HasIndex("DegreePlanId");
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("StudentDegreePlan");
+                    b.ToTable("StudentTerm");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -344,7 +351,7 @@ namespace Team8.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Team8.Models.ApplicationUser")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -352,7 +359,7 @@ namespace Team8.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Team8.Models.ApplicationUser")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -365,7 +372,7 @@ namespace Team8.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Team8.Models.ApplicationUser")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -373,62 +380,77 @@ namespace Team8.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Team8.Models.ApplicationUser")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Team8.Models.DegreeRequirement", b =>
-                {
-                    b.HasOne("Team8.Models.Degree", "Degree")
-                        .WithMany("DegreeRequirements")
-                        .HasForeignKey("DegreeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Team8.Models.PlanTerm", b =>
-                {
-                    b.HasOne("Team8.Models.StudentDegreePlan", "StudentDegreePlan")
-                        .WithMany("PlanTerms")
-                        .HasForeignKey("StudentDegreePlanId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Team8.Models.PlanTermRequirement", b =>
-                {
-                    b.HasOne("Team8.Models.DegreeRequirement", "DegreeRequirement")
-                        .WithMany()
-                        .HasForeignKey("DegreeRequirementId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Team8.Models.PlanTerm", "PlanTerm")
-                        .WithMany("PlanTermRequirements")
-                        .HasForeignKey("PlanTermId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Team8.Models.RequirementStatus", "RequirementStatus")
-                        .WithMany()
-                        .HasForeignKey("RequirementStatusId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Team8.Models.StudentDegreePlan", b =>
+            modelBuilder.Entity("Team8.Models.DegreePlan", b =>
                 {
                     b.HasOne("Team8.Models.Degree", "Degree")
                         .WithMany()
-                        .HasForeignKey("DegreeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Team8.Models.DegreeStatus", "DegreeStatus")
-                        .WithMany()
-                        .HasForeignKey("DegreeStatusId")
+                        .HasForeignKey("DegreeID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Team8.Models.Student", "Student")
-                        .WithMany("StudentDegreePlans")
-                        .HasForeignKey("StudentId")
+                        .WithMany("DegreePlans")
+                        .HasForeignKey("StudentID")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Team8.Models.DegreePlanTermRequirement", b =>
+                {
+                    b.HasOne("Team8.Models.DegreePlan", "DegreePlan")
+                        .WithMany("DegreePlanTermRequirements")
+                        .HasForeignKey("DegreePlanID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Team8.Models.Requirement", "Requirement")
+                        .WithMany()
+                        .HasForeignKey("RequirementID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Team8.Models.StudentTerm", "StudentTerm")
+                        .WithMany("DegreePlanTermRequirement")
+                        .HasForeignKey("StudentTermId");
+                });
+
+            modelBuilder.Entity("Team8.Models.DegreeRequirement", b =>
+                {
+                    b.HasOne("Team8.Models.Degree", "Degree")
+                        .WithMany()
+                        .HasForeignKey("DegreeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Team8.Models.Requirement", "Requirement")
+                        .WithMany()
+                        .HasForeignKey("RequirementId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Team8.Models.Requirement", b =>
+                {
+                    b.HasOne("Team8.Models.Degree", "Degree")
+                        .WithMany("Requirements")
+                        .HasForeignKey("DegreeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Team8.Models.StudentTerm", "StudentTerm")
+                        .WithMany("Requirements")
+                        .HasForeignKey("StudentTermId");
+                });
+
+            modelBuilder.Entity("Team8.Models.StudentTerm", b =>
+                {
+                    b.HasOne("Team8.Models.DegreePlan", "DegreePlan")
+                        .WithMany("StudentTerms")
+                        .HasForeignKey("DegreePlanId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Team8.Models.Student")
+                        .WithMany("StudentTerms")
+                        .HasForeignKey("StudentId");
                 });
 #pragma warning restore 612, 618
         }

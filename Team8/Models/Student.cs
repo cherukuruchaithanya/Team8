@@ -1,40 +1,30 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Team8.Models {
-  public class Student {
-    [DatabaseGenerated (DatabaseGeneratedOption.None)]
-    public int StudentId { get; set; }
+namespace Team8.Models
+{
+    public class Student
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int StudentId { get; set; }
 
-    [Required]
-    [Display (Name = "Given Name")]
-    [StringLength (50, ErrorMessage = "Given name cannot be longer than 50 characters.")]
-    public string GivenName { get; set; }
+        [Required]
+        [StringLength(40, MinimumLength = 3)]
+        [Display(Name = "Given")]
+        public string First { get; set; }
 
-    [Display (Name = "Family Name")]
-    [StringLength (50, ErrorMessage = "Family name cannot be longer than 50 characters.")]
-    public string FamilyName { get; set; }
+        [Required]
+        [StringLength(40, MinimumLength = 3)]
+        [Display(Name = "Family")]
+        public string Last { get; set; }
 
-    [Display (Name = "Full Name")]
-    public string FullName {
-      get {
-        return GivenName + " " + FamilyName;
-      }
+        public string Snumber { get; set; }
+        public int _919 { get; set; }
+        public bool Done { get; set; }
+
+        public ICollection<DegreePlan> DegreePlans { get; set; }
+        public ICollection<StudentTerm> StudentTerms { get; set; }
     }
-
-    // Add navigation property for each related entity
-
-    // each student has many plans... 
-    public ICollection<StudentDegreePlan> StudentDegreePlans { get; set; }
-
-    public override string ToString () {
-      return base.ToString () + ": " +
-        "StudentId = " + StudentId +
-        "GivenName = " + GivenName +
-        ", FamilyName = " + FamilyName +
-        ", FullName = " + FullName +
-        "";
-    }
-  }
 }

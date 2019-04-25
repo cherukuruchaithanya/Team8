@@ -11,21 +11,21 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.GivenName)
+            @Html.DisplayNameFor(model => model.First)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.GivenName)
+            @Html.DisplayFor(model => model.First)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.FamilyName)
+            @Html.DisplayNameFor(model => model.Last)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.FamilyName)
+            @Html.DisplayFor(model => model.Last)
         </dd>
 
 
         <dt>
-            @Html.DisplayNameFor(model => model.StudentDegreePlans)
+            @Html.DisplayNameFor(model => model.DegreePlans)
         </dt>
         <dd>
             <table class="table">
@@ -38,29 +38,29 @@
                     <th>Includes Internship?</th>
                     <th>More</th>
                 </tr>
-                @foreach (var item in Model.StudentDegreePlans.OrderBy(p => p.PlanNumber))
+                @foreach (var item in Model.DegreePlans.OrderBy(p => p.DegreeID))
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DegreeId)
+                            @Html.DisplayFor(modelItem => item.DegreePlanId)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.PlanNumber)
+                            @Html.DisplayFor(modelItem => item.DegreeID)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.PlanAbbrev)
+                            @Html.DisplayFor(modelItem => item.StudentID)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.PlanName)
+                            @Html.DisplayFor(modelItem => item.DegreePlanAbbrev)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DegreeStatusId)
+                            @Html.DisplayFor(modelItem => item.DegreePlanName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.IncludesInternship)
+                            @Html.DisplayFor(modelItem => item.Done)
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-controller="StudentDegreePlans" asp-route-id="@item.StudentDegreePlanId">Plan</a>
+                            <a asp-action="Edit" asp-controller="DegreePlans" asp-route-id="@item.DegreePlanId">Plan</a>
                         </td>
                     </tr>
                 }

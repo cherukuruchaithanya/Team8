@@ -1,7 +1,11 @@
-namespace Team8.Models {
-  public class ErrorViewModel {
-    public string RequestId { get; set; }
+using System;
 
-    public bool ShowRequestId => !string.IsNullOrEmpty (RequestId);
-  }
+namespace Team8.Models
+{
+    public class ErrorViewModel
+    {
+        public string RequestId { get; set; }
+
+        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+    }
 }
